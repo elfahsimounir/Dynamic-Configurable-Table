@@ -22,7 +22,16 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@TableServices":["./src/app/componenets/table/services"],
+      "@TableComponenets":["./src/app/componenets/table/componenets"],
+      "@Services":["./src/app/services"],
+      "@posComponenets":["./src/app/componenets/point-of-sale"],
+      "@standComponenets":["./src/app/componenets"],
+      "@directives":["./src/app/directives"],
+      "@interfaces":["./src/app/interfaces"],
+     }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -1,0 +1,122 @@
+
+.path {
+    fill: none;
+    stroke: url(#linearGradient);
+    stroke-width: 1.5;
+    stroke-dasharray: 240 1386;
+  }
+  
+  .form-items {
+    position: relative;
+  }
+  .form-items input {
+    display: block;
+    transition: all 0.3s ease;
+  }
+  .form-items label {
+    position: absolute;
+    cursor: text;
+    z-index: 4;
+    top: 2px;
+    left: 10px;
+    transition: all 0.3s ease;
+  }
+  .form-items input:focus + label,
+  .form-items input:valid + label {
+    font-size: 12px;
+    top: -8px;
+    opacity: 0.7;
+  }
+  .content{
+    opacity: 0;
+    margin-top: -100rem;
+    animation:  contt 2s ease-in-out;
+  }
+  @keyframes contt{
+    0%{opacity: 1 ; margin-top:-1rem}
+    100%{opacity: 0; margin-top:-100rem}
+  }
+
+
+  
+  .email{
+    position: absolute;
+    width: 411.4px;
+    left: calc(-3.13rem);
+    z-index: -1;
+    top: calc(-7.6rem);
+  }
+  .password{
+    position: absolute;
+    width: 411.4px;
+    left: -3.13rem;
+    z-index: -1;
+    top: -7.6rem;
+  }
+  .submit{
+    position: absolute;
+      width: 396px;
+      left: -43px;
+      height: 18rem;
+      z-index: -1;
+      top:-0.76rem;
+  }
+  .wlc{
+    filter: drop-shadow(-5px 1px 2px #0000004d);
+  }
+  .brr{
+    width: 10px;
+    opacity: 0;
+    animation: wi 1s ease-in-out;
+  }
+  .rrb{
+    width: 4rem;
+    animation: iw 1s ease-in-out;
+  }
+  @keyframes wi{
+    0%{width: 100%;opacity: 1;}
+    100%{width: 0%;opacity: 0;}
+  }
+  @keyframes iw{
+    0%{width: 0rem}
+    100%{width: 4rem}
+  }
+  .bgShadow{
+    filter: drop-shadow(-28px -5px 132px black);
+  }
+  .flying-text-container {
+    display: inline-block;
+    overflow: hidden;
+  }
+  
+  .flying-char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(-100%);
+    animation: flyAnimation 1.5s ease-in-out forwards;
+  }
+  
+  @keyframes flyAnimation {
+    0% {
+      opacity: 0;
+      transform: translateY(-100%) translateX(-200%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) translateX(0);
+    }
+  }
+  .noBg{
+   opacity: 0;
+    animation: fadeOutBackground 3s ease-in-out;
+  }
+  
+  @keyframes fadeOutBackground {
+    from {
+      opacity: 1;
+    }
+    to {
+     opacity: 0;
+    }
+  }
+  

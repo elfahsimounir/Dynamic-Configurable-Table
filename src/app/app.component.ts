@@ -1,14 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { AuthGuard } from '@Services';
+import { NavbarComponent } from './componenets/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule,RouterOutlet,NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
-  title = 'angular-17';
+export class AppComponent implements OnInit{
+  auth!:AuthGuard;
+  constructor(private authService:AuthGuard,public router:Router) {}
+  ngOnInit(): void {
+    this.auth = this.authService
+  }
 }

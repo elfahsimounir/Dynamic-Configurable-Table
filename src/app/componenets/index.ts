@@ -1,0 +1,10 @@
+// export * from './dark-mode-toggle/dark-mode-toggle.component';
+// export * from './footer/footer.component';
+// export * from './header/header.component';
+export * from './login/login.component';
+// export * from './logout//logout.component';
+// export * from './not-found/not-found.component';
+export * from './home/home.component';
+export * from './home-details/home-details.component';
+export * from './home-list/home-list.component';
+export * from './home-details/home-details.component';
