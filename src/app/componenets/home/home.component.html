@@ -1,4 +1,4 @@
-<section [ngClass]="!home.list?'homeBG ' :''" class="h-[93vh]  bg-white dark:shadow-black shadow pt-20   rounded-lg  dark:bg-gray-900 ">
+<section [ngClass]="!home.list?'homeBG ' :''" class="h-[95vh]  bg-white dark:shadow-black shadow pt-20   rounded-b-lg  dark:bg-gray-900 ">
 <div class="w-full flex justify-center pt-3 transition-all">
     <button (click)="home.switch()" [ngClass]="!home.list?'dark:bg-gray-800 shadow-inner bg-gray-100 ':'brightness-0 dark:brightness-0 dark:invert opacity-75'"  class="px-3 rounded-xl py-[1px] "><img class="w-7 h-7" src="assets/images/details.webp" alt="medicol icons"></button>
     <button (click)="home.switch()" [ngClass]="home.list?'dark:bg-gray-800 shadow-inner bg-gray-100 ':'brightness-0 dark:brightness-0 dark:invert opacity-75'" class="px-3 rounded-xl py-[1px] "><img class="w-6 h-6" src="assets/images/list.webp" alt="medicol icons"></button>

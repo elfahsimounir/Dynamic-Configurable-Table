@@ -1,11 +1,11 @@
 
-<nav class="w-full z-50 fixed top-0 left-0 ">
+<nav #blurNav class="w-full z-50 fixed top-0 left-0  ">
     <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
         <a href="http://localhost:4200/" class="flex items-center gap-2">
             <div class="12 flex justify-center items-center gap-1">
                 <div>
-                  <img src="assets/images/logo.webp" alt="Medicol logo"
-                    class="w-8 h-8" />
+                  <img src="assets/images/logo.webp"  alt="Medicol logo"
+                    class="w-8 h-8 dark:brightness-125" />
                 </div>
                 <div>
                   <span class="text-xl dark:text-gray-300 dark:hover:text-gray-200"><span class="font-extrabold">Medi</span>col</span>
@@ -24,14 +24,14 @@
                   
                     <a [routerLink]="['/home']" class=" flex gap-1" aria-current="page">
                         <img [ngClass]="correctRoute==='/home'?'block':'hidden'" src="assets/images/home.webp" class="w-5 h-5 drop-shadow  animate-fade-left animate-duration-500 animate-ease-in-out" alt="medicol home icon" >
-                        <span>Home</span>
+                        <span class="text-gray-700 dark:text-gray-300">Home</span>
                     </a>
                     <div class="w-full h-[3px] -mt-[1px] flex items-center justify-center"><div class="w-full hidden h-full bg-gradient-to-r from-purple-600 to-purple-950 rounded-[5px]"></div></div>
                 </li>
                 <li>
-            <button appToggling [options]="options" [optionsIcon]="icon" [optionsIconDown]="iconDown" [optionsIconUp]="iconUp" class="flex hover:text-purple-800 items-center justify-between w-full py-2 pl-3 pr-4 md:w-auto md:p-0">
+            <button appToggling [border]="borderDiv" [blurDiv]="blurNav" [options]="options" [optionsIcon]="icon" [optionsIconDown]="iconDown" [optionsIconUp]="iconUp" class="flex dark:text-purple-600 text-purple-800 items-center justify-between w-full py-2 pl-3 pr-4 md:w-auto md:p-0">
                 <img #icon src="assets/images/options.webp" class="w-5 h-5 drop-shadow hidden mr-1 animate-fade-left animate-duration-500 animate-ease-in-out" alt="medicol options icon" >   
-                      <span class="text-gray-700">Options</span>  
+                      <span class="text-gray-700 dark:text-gray-300">Options</span>  
                       <span #iconDown class="animate-flip-down animate-duration-500 animate-ease-in-out">
                         <svg  class="w-2.5 h-2.5 ml-2.5 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
@@ -42,18 +42,16 @@
                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                              </svg>
                       </span>
-  
-         
             </button>
                 </li>
                 <li>
-                    <a  class=" ">Marketplace</a>
+                    <a  class="text-gray-700 dark:text-gray-300">Marketplace</a>
                 </li>
                 <li>
-                    <a  class=" ">Resources</a>
+                    <a  class="text-gray-700 dark:text-gray-300">Resources</a>
                 </li>
                 <li>
-                    <a  class=" ">Contact</a>
+                    <a  class="text-gray-700 dark:text-gray-300">Contact</a>
                 </li>
                 <li>
                     <app-dark-mode-toggle/>
@@ -61,9 +59,9 @@
             </ul>
         </div>
     </div>
-    <div [ngClass]="correctRoute==='/home'? !home.list? 'border-y dark:border-gray-950  ml-2 w-[84.2%]':'border-y dark:border-gray-950  ml-2 w-[99.2%]':''" ></div>
-    <div class="mx-2 border-gray-200  bg-gray-900  ">
-        <div #options class=" hidden border-gray-200 shadow-sm bg-gray-50 md:bg-white border-y dark:bg-gray-800 dark:border-gray-600">
+    <div #borderDiv  class="block" [ngClass]="correctRoute==='/home'? !home.list? 'border-y dark:border-gray-950  ml-2 w-[83.4%]':'border-y dark:border-gray-950  ml-2 w-[99.2%]':''" ></div>
+    <div [ngClass]="correctRoute==='/home'?'mx-2 border-gray-200':''" class="  ">
+        <div #options class="hidden  border-gray-200 shadow-sm ">
             <div class="grid max-w-screen-xl px-4 py-5 mx-auto text-gray-900 dark:text-white sm:grid-cols-2 md:px-6">
                 <ul>
                     <li>

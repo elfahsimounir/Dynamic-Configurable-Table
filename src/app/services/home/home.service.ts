@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class HomeService {
 
   constructor() { }
-  list:boolean=true;
+  list:boolean=!true;
 
   switch(){
     this.list=!this.list
