@@ -1,0 +1,23 @@
+*{
+    user-select: none !important;
+}
+.ul {
+    li {
+       &:hover{
+        div div {
+            display: block;
+            animation: widthAnimation 0.3s ease-in-out; 
+        }
+        a img{
+            display: block;
+        }
+        button img{
+            display: block;
+        }
+       } 
+    }
+};
+@keyframes widthAnimation{
+    from {width: 0%;}
+    to{width: 100%;}
+};

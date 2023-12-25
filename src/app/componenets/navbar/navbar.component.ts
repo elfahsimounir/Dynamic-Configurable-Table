@@ -1,15 +1,13 @@
 import { Component, OnInit} from '@angular/core';
 import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
-
-import { Router } from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HomeService } from '../../services/home/home.service';
-
-
+import { TogglingDirective } from '../../directives/toggling.directive';
 
 @Component({
   standalone:true,
-  imports:[CommonModule,DarkModeToggleComponent,],
+  imports:[CommonModule,DarkModeToggleComponent,RouterLink,TogglingDirective],
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
@@ -21,6 +19,6 @@ correctRoute!:string;
 
   ngOnInit(): void {
     this.correctRoute=this.router.url
-      }
+    }
 }
    
