@@ -12,7 +12,6 @@ export class LogoutService {
 
 logoutHandler(){
   this.logoutAnswer=!this.logoutAnswer
-  console.log(this.logoutAnswer)
 }
 logout() {
   this.cookieService.delete('approved');

@@ -7,7 +7,8 @@ import { AuthGuard} from './services/auth-guard/auth-guard.service';
 
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), 
+  providers: [
+    provideRouter(routes), 
     provideClientHydration(),
     AuthGuard
   ]

@@ -1,32 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+
 @font-face {
     font-family: 'Poppins';
-    src: local('Poppins-Regular'), url('./assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-  }
-  
-  @font-face {
+    src: local('Poppins Regular'), local('Poppins-Regular'), url('./assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+}
+
+@font-face {
     font-family: 'Poppins';
-    src: local('Poppins-Bold'), url('./assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
-  }
-  
-  @font-face {
+    src: local('Poppins Bold'), local('Poppins-Bold'), url('./assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+}
+
+@font-face {
     font-family: 'Poppins';
-    src: local('YourFontName-Italic'), url('./assets/fonts/Poppins/Poppins-Medium.ttf') format('truetype');
     font-weight: bolder;
     font-style: normal;
-  }
-*{
+    src: local('Poppins Medium'), local('Poppins-Medium'), url('./assets/fonts/Poppins/Poppins-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Poppins';
+    font-weight: 200;
+    font-style: normal;
+    src: local('Poppins Thin'), local('Poppins-Light'), url('./assets/fonts/Poppins/Poppins-Light.ttf') format('truetype');
+}
+
+
+* {
     user-select: none;
-    font-family: Poppins;
-    &:focus{
-      outline: none;
-  }
+    font-family: 'Poppins', sans-serif; 
+    &:focus {
+        outline: none;
+    }
 }

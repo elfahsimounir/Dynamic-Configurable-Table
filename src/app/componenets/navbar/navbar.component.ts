@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { HomeService } from '../../services/home/home.service';
 import { TogglingDirective } from '../../directives/toggling.directive';
 import { SignOutComponent } from '../sign-out/sign-out.component';
+import { LogoutService } from '../../services/logout/logout.service';
 
 @Component({
   standalone:true,
@@ -15,11 +16,13 @@ import { SignOutComponent } from '../sign-out/sign-out.component';
 })
 export class NavbarComponent implements OnInit{
 correctRoute!:string;
+logout!:LogoutService;
 
-  constructor(private router: Router,public home:HomeService) {}
+  constructor(private router: Router,public home:HomeService, private logoutService:LogoutService) {}
 
   ngOnInit(): void {
     this.correctRoute=this.router.url
+    this.logout=this.logoutService
     }
 }
    

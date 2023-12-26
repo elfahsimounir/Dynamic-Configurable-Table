@@ -45,8 +45,8 @@
                 </li>
                 <li>
                   
-                    <a [routerLink]="['/home']" class=" flex gap-1 capitalize" aria-current="page">
-                        <img [ngClass]="correctRoute==='/home'?'block':'hidden'" src="assets/images/achat.webp" class="w-5 h-5 drop-shadow  animate-fade-left animate-duration-500 animate-ease-in-out" alt="medicol achats icon" >
+                    <a [routerLink]="['/avoire']" class=" flex gap-1 capitalize" aria-current="page">
+                        <img [ngClass]="correctRoute==='/avoire'?'block':'hidden'" src="assets/images/achat.webp" class="w-5 h-5 drop-shadow  animate-fade-left animate-duration-500 animate-ease-in-out" alt="medicol achats icon" >
                         <span class="text-gray-700 dark:text-gray-300">achats</span>
                     </a>
                     <div class="w-full h-[3px] -mt-[1px] flex items-center justify-center"><div class="w-full hidden h-full bg-gradient-to-r from-purple-600 to-purple-950 rounded-[5px]"></div></div>
@@ -67,22 +67,28 @@
                     <a appToggling [setting]="setting" class="brightness-0 cursor-pointer invert-0 hover:brightness-100 dark:hover:brightness-125 hover:opacity-100 opacity-60 dark:hover:invert-0 dark:invert">
                         <img src="assets/images/parametre.webp" class="w-5 h-5 drop-shadow" alt="medicol parametre icon">
                     </a>
-                    <div #setting class="z-10 absolute  bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 origin-top-right right-0 top-8">
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                    <div #setting class="z-10 absolute hidden bg-gray-300 divide-y bg-opacity-20 backdrop-blur-sm  rounded-lg shadow dark:bg-gray-800 dark:bg-opacity-20  origin-top-right right-0 top-8">
+                        <ul class="py-2 px-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                                <a href="#" class="block px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                                <a href="#" class="block px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                                <a href="#" class="block px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                             
+                                 @if(!logout.logoutAnswer){
+                                    <a (click)="logout.logoutHandler()" class="block cursor-pointer px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                     Sign out
-                                    <app-sign-out/>
                                 </a>
+                                 }@else {
+                                 <app-sign-out/>
+                                 } 
+
+                             
                             </li>
                         </ul>
                     </div>
@@ -92,7 +98,7 @@
 
     </div>
     <div #borderDiv  class="block" [ngClass]="correctRoute==='/home'? !home.list? 'border-y dark:border-gray-950  ml-2 w-[83.4%]':'border-y dark:border-gray-950  ml-2 w-[99.2%]':''" ></div>
-    <div [ngClass]="correctRoute==='/home'?'mx-2 border-gray-200':''" class="  ">
+    <div [ngClass]="correctRoute==='/home'?'mx-2 border-gray-200':''" >
         <div #options class="hidden  border-gray-200 shadow-sm ">
             <div class="grid max-w-screen-xl px-4 py-5 mx-auto text-gray-900 dark:text-white sm:grid-cols-2 md:px-6">
                 <ul>
