@@ -67,7 +67,7 @@
                     <a appToggling [setting]="setting" class="brightness-0 cursor-pointer invert-0 hover:brightness-100 dark:hover:brightness-125 hover:opacity-100 opacity-60 dark:hover:invert-0 dark:invert">
                         <img src="assets/images/parametre.webp" class="w-5 h-5 drop-shadow" alt="medicol parametre icon">
                     </a>
-                    <div #setting class="z-10 absolute hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 origin-top-right right-0 top-7">
+                    <div #setting class="z-10 absolute  bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 origin-top-right right-0 top-8">
                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                             <li>
                                 <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
@@ -79,7 +79,10 @@
                                 <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    Sign out
+                                    <app-sign-out/>
+                                </a>
                             </li>
                         </ul>
                     </div>

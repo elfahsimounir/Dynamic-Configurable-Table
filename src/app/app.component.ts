@@ -4,11 +4,12 @@ import { Router, RouterOutlet } from '@angular/router';
 import { AuthGuard } from '@Services';
 import { NavbarComponent } from './componenets/navbar/navbar.component';
 import { FooterComponent } from './componenets/footer/footer.component';
+import { AvoireComponent } from './componenets/avoire/avoire.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule,RouterOutlet,NavbarComponent,FooterComponent],
+  imports: [CommonModule,RouterOutlet,NavbarComponent,FooterComponent,AvoireComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
