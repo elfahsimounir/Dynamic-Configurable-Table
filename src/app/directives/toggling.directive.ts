@@ -10,6 +10,7 @@ export class TogglingDirective {
   @Input() optionsIconUp: ElementRef | HTMLElement | undefined;
   @Input() optionsIconDown: ElementRef | HTMLElement | undefined;
   @Input() blurDiv: ElementRef | HTMLElement | undefined;
+  @Input() setting: ElementRef | HTMLElement | undefined;
   @Input() border: ElementRef | HTMLElement | undefined;
 
 
@@ -25,7 +26,9 @@ export class TogglingDirective {
     this.toggleHandling(this.optionsIconUp,'visibility');
     this.toggleHandling(this.optionsIconDown,'visibility');
     this.toggleHandling(this.border,'visibility');
+    this.toggleHandling(this.setting,'visibility');
     this.toggleHandling(this.blurDiv,'blur');
+    
   }
 
   private toggleHandling(elementRef:ElementRef | HTMLElement | undefined,answer:string) {

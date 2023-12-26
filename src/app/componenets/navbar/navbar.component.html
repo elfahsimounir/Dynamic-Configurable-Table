@@ -1,5 +1,5 @@
 
-<nav #blurNav class="w-full z-50 fixed top-0 left-0  ">
+<nav #blurNav class="w-full z-50 fixed top-0 left-0"  >
     <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
         <a href="http://localhost:4200/" class="flex items-center gap-2">
             <div class="12 flex justify-center items-center gap-1">
@@ -21,8 +21,7 @@
         <div  class="items-center justify-between  font-medium w-full md:flex md:w-auto md:order-1">
             <ul class="flex ul flex-col p-4 md:p-0 mt-4 border  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
                 <li>
-                  
-                    <a [routerLink]="['/home']" class=" flex gap-1" aria-current="page">
+                    <a [routerLink]="['/home']" class=" flex gap-1 capitalize" aria-current="page">
                         <img [ngClass]="correctRoute==='/home'?'block':'hidden'" src="assets/images/home.webp" class="w-5 h-5 drop-shadow  animate-fade-left animate-duration-500 animate-ease-in-out" alt="medicol home icon" >
                         <span class="text-gray-700 dark:text-gray-300">Home</span>
                     </a>
@@ -45,19 +44,49 @@
             </button>
                 </li>
                 <li>
-                    <a  class="text-gray-700 dark:text-gray-300">Marketplace</a>
+                  
+                    <a [routerLink]="['/home']" class=" flex gap-1 capitalize" aria-current="page">
+                        <img [ngClass]="correctRoute==='/home'?'block':'hidden'" src="assets/images/achat.webp" class="w-5 h-5 drop-shadow  animate-fade-left animate-duration-500 animate-ease-in-out" alt="medicol achats icon" >
+                        <span class="text-gray-700 dark:text-gray-300">achats</span>
+                    </a>
+                    <div class="w-full h-[3px] -mt-[1px] flex items-center justify-center"><div class="w-full hidden h-full bg-gradient-to-r from-purple-600 to-purple-950 rounded-[5px]"></div></div>
                 </li>
                 <li>
-                    <a  class="text-gray-700 dark:text-gray-300">Resources</a>
+                    <a [routerLink]="['/home']" class=" flex gap-1 capitalize" aria-current="page">
+                        <img [ngClass]="correctRoute==='/home'?'block':'hidden'" src="assets/images/files.webp" class="w-5 h-5 drop-shadow  animate-fade-left animate-duration-500 animate-ease-in-out" alt="medicol stock icon" >
+                        <span class="text-gray-700 dark:text-gray-300">stock</span>
+                    </a>
+                    <div class="w-full h-[3px] -mt-[1px] flex items-center justify-center"><div class="w-full hidden h-full bg-gradient-to-r from-purple-600 to-purple-950 rounded-[5px]"></div></div>
                 </li>
                 <li>
-                    <a  class="text-gray-700 dark:text-gray-300">Contact</a>
+                    <div >
+                        <app-dark-mode-toggle/>
+                    </div>
                 </li>
-                <li>
-                    <app-dark-mode-toggle/>
+                <li class="relative">
+                    <a appToggling [setting]="setting" class="brightness-0 cursor-pointer invert-0 hover:brightness-100 dark:hover:brightness-125 hover:opacity-100 opacity-60 dark:hover:invert-0 dark:invert">
+                        <img src="assets/images/parametre.webp" class="w-5 h-5 drop-shadow" alt="medicol parametre icon">
+                    </a>
+                    <div #setting class="z-10 absolute hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 origin-top-right right-0 top-7">
+                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                            <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
         </div>
+
     </div>
     <div #borderDiv  class="block" [ngClass]="correctRoute==='/home'? !home.list? 'border-y dark:border-gray-950  ml-2 w-[83.4%]':'border-y dark:border-gray-950  ml-2 w-[99.2%]':''" ></div>
     <div [ngClass]="correctRoute==='/home'?'mx-2 border-gray-200':''" class="  ">
@@ -106,4 +135,5 @@
             </div>
         </div>
     </div>
+
 </nav>

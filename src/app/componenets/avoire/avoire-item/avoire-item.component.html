@@ -1,16 +1,15 @@
 <div class="w-full capitalize flex h-16 mb-2 rounded-lg bg-opacity-30 shadow-md  dark:bg-gray-950 dark:bg-opacity-50 bg-white">
 <div class="w-[75%] h-full px-3 py-2 flex flex-col ">
 <div>  
-    <h1 class="text-gray-100 dark:text-gray-200 text-base drop-shadow">{{itemName}}</h1> 
+      <h1 class="text-gray-100 dark:text-gray-200 text-base drop-shadow">{{itemName}}</h1> 
 </div>
 <div class="text-sm flex gap-2 px-3 opacity-90"> 
-      <p class="text-gray-200 drop-shadow flex gap-1">{{itemQty?.toFixed(2)}}<span class="text-purple-800 font-semibold">{{'u'}}</span></p> 
-
-       <p><span class="text-gray-200 drop-shadow">{{itemPrice?.toFixed(2)}}</span><span class="text-gray-700"> | </span><span class="text-purple-800 font-semibold">{{'units'}}</span> </p>
+      <p class="text-gray-200 drop-shadow flex gap-1">{{itemQty.toFixed(2)}}<span class="text-purple-800 font-semibold">{{'u'}}</span></p> 
+      <p><span class="text-gray-200 drop-shadow">{{itemPrice.toFixed(2)}}</span><span class="text-gray-700"> | </span><span class="text-purple-800 font-semibold">{{'units'}}</span> </p>
 </div>
 </div>
 <div class="w-[25%] my-3 border-l  border-dashed border-green-700  py-2 flex justify-center items-center">
-    <p class="text-white drop-shadow">{{itemtotal?.toFixed(2)}}</p>
-    <span class="text-gray-600 font-semibold dark:text-gray-400">DH</span>
+      <p class="text-white drop-shadow">{{itemtotal.toFixed(2)}}</p>
+      <span class="text-gray-600 font-semibold dark:text-gray-400">DH</span>
 </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="flex items-center gap-3">
-    <div [ngClass]="colControle&&!tableService.filter?'w-[26rem] grid grid-cols-6':colControle&&tableService.filter?'w-[28rem] grid grid-cols-6':'flex items-center w-[67%]'"  class="h-8 dark:bg-gray-800 bg-gray-200 rounded-lg">
+    <div [ngClass]="colControle&&!tableService.filter?'w-[26rem] grid grid-cols-6':colControle&&tableService.filter?'w-[28rem] grid grid-cols-6':'flex items-center w-auto'"  class="h-8 dark:bg-gray-800 bg-gray-200 rounded-lg">
       <div  class="flex justify-center hover:bg-white dark:hover:bg-gray-900" *ngIf="colControle">
         <button (click)="col_Controle()" data-tooltip-target="tooltip-columncontrol" type="button" class="inline-flex flex-col items-center justify-center px-5  group">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-500 dark:text-white">
