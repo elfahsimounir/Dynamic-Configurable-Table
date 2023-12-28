@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './services/auth-guard/auth-guard.service';
+import { NotFoundComponent } from './componenets/not-found/not-found.component';
 
 export const routes: Routes = [
   {
@@ -18,5 +19,5 @@ export const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  // { path: '**', component: NotFoundComponent },
+  { path: '**', component: NotFoundComponent },
 ];

@@ -21,9 +21,9 @@
         <div  class="items-center justify-between  font-medium w-full md:flex md:w-auto md:order-1">
             <ul class="flex ul flex-col p-4 md:p-0 mt-4 border  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
                 <li>
-                    <a [routerLink]="['/home']" class=" flex gap-1 capitalize" aria-current="page">
-                        <img [ngClass]="correctRoute==='/home'?'block':'hidden'" src="assets/images/home.webp" class="w-5 h-5 drop-shadow  animate-fade-left animate-duration-500 animate-ease-in-out" alt="medicol home icon" >
-                        <span class="text-gray-700 dark:text-gray-300">Home</span>
+                    <a [routerLink]="['/home/details']" class=" flex gap-1 capitalize" aria-current="page">
+                        <img [ngClass]="rc.currentRoute('home','') ?'block':'hidden'" src="assets/images/home.webp" class="w-5 h-5 drop-shadow  animate-fade-left animate-duration-500 animate-ease-in-out" alt="medicol home icon" >
+                        <span class="text-gray-700 dark:text-gray-300">Accueil</span>
                     </a>
                     <div class="w-full h-[3px] -mt-[1px] flex items-center justify-center"><div class="w-full hidden h-full bg-gradient-to-r from-purple-600 to-purple-950 rounded-[5px]"></div></div>
                 </li>
@@ -46,14 +46,14 @@
                 <li>
                   
                     <a [routerLink]="['/avoire']" class=" flex gap-1 capitalize" aria-current="page">
-                        <img [ngClass]="correctRoute==='/avoire'?'block':'hidden'" src="assets/images/achat.webp" class="w-5 h-5 drop-shadow  animate-fade-left animate-duration-500 animate-ease-in-out" alt="medicol achats icon" >
+                        <img [ngClass]="rc.currentRoute('avoire','') ?'block':'hidden'" src="assets/images/achat.webp" class="w-5 h-5 drop-shadow  animate-fade-left animate-duration-500 animate-ease-in-out" alt="medicol achats icon" >
                         <span class="text-gray-700 dark:text-gray-300">achats</span>
                     </a>
                     <div class="w-full h-[3px] -mt-[1px] flex items-center justify-center"><div class="w-full hidden h-full bg-gradient-to-r from-purple-600 to-purple-950 rounded-[5px]"></div></div>
                 </li>
                 <li>
                     <a [routerLink]="['/home']" class=" flex gap-1 capitalize" aria-current="page">
-                        <img [ngClass]="correctRoute==='/home'?'block':'hidden'" src="assets/images/files.webp" class="w-5 h-5 drop-shadow  animate-fade-left animate-duration-500 animate-ease-in-out" alt="medicol stock icon" >
+                        <img [ngClass]="rc.currentRoute('stock','') ?'block':'hidden'" src="assets/images/files.webp" class="w-5 h-5 drop-shadow  animate-fade-left animate-duration-500 animate-ease-in-out" alt="medicol stock icon" >
                         <span class="text-gray-700 dark:text-gray-300">stock</span>
                     </a>
                     <div class="w-full h-[3px] -mt-[1px] flex items-center justify-center"><div class="w-full hidden h-full bg-gradient-to-r from-purple-600 to-purple-950 rounded-[5px]"></div></div>
@@ -87,8 +87,6 @@
                                  }@else {
                                  <app-sign-out/>
                                  } 
-
-                             
                             </li>
                         </ul>
                     </div>
@@ -97,8 +95,8 @@
         </div>
 
     </div>
-    <div #borderDiv  class="block" [ngClass]="correctRoute==='/home'? !home.list? 'border-y dark:border-gray-950  ml-2 w-[83.4%]':'border-y dark:border-gray-950  ml-2 w-[99.2%]':''" ></div>
-    <div [ngClass]="correctRoute==='/home'?'mx-2 border-gray-200':''" >
+    <div #borderDiv  class="block" [ngClass]="rc.currentRoute('home','')? rc.currentRoute('home','details')? 'border-y dark:border-gray-950  ml-2 w-[83.4%]':'border-y dark:border-gray-950  ml-2 w-[99.2%]':''" ></div>
+    <div [ngClass]="rc.currentRoute('home','')?'mx-2 border-gray-200':''" >
         <div #options class="hidden  border-gray-200 shadow-sm ">
             <div class="grid max-w-screen-xl px-4 py-5 mx-auto text-gray-900 dark:text-white sm:grid-cols-2 md:px-6">
                 <ul>

@@ -1,8 +1,18 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-
-
+.shdw-inner {
+    --tw-shadow: inset 0 0px 4px 0 rgba(0, 0, 0, 0.42);
+    --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  };
+  .dotted {
+    background:
+        radial-gradient(circle, #00000000 1px, transparent 1px),
+        radial-gradient(circle, #0000001d 1px, transparent 1px);
+    background-position: 0 0, 10px 10px;
+    background-size: 10px 10px;
+};
 @font-face {
     font-family: 'Poppins';
     font-weight: normal;

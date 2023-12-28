@@ -14,7 +14,11 @@ logoutHandler(){
   this.logoutAnswer=!this.logoutAnswer
 }
 logout() {
-  this.cookieService.delete('approved');
-  this.router.navigate(['/login']);
+  if (this.cookieService.check('approved')) {
+    this.cookieService.delete('approved');
+    this.router.navigate(['/login']);
+  } else {
+    console.error('Cookie "approved" does not exist.');
+  }
 }
 }

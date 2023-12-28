@@ -88,7 +88,8 @@ export class LoginService {
       this.contetShow = true
       this.cookieService.set('approved', 'true', 7)
       setTimeout(() => {
-        this.router.navigate(['/'])
+        this.router.navigate(['/home/details'])
+        this.welcome=false
       }, 3000)
     }
     this.submited = true

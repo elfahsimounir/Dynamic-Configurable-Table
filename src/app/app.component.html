@@ -2,7 +2,7 @@
     <div>
         <app-navbar/>
     </div>
-<div [ngClass]="router.url==='/home'?'':'mt-16'" class="mx-2">
+<div [ngClass]="rc.currentRoute('home','') ?'':'mt-16'" class="mx-2">
     <router-outlet/>
 </div>
     <app-footer />
