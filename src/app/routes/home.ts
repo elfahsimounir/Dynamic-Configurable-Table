@@ -10,8 +10,7 @@ export const routes: Routes = [
         children: [
             { path: 'details', component: HomeDetailsComponent},
             { path: 'menu', component: HomeListComponent},
-            // Add more child routes as needed
-            { path: '', redirectTo: 'list', pathMatch: 'full' } 
+            { path: '', redirectTo: 'details', pathMatch: 'full' } 
         ]
     }
 ]

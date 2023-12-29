@@ -14,5 +14,12 @@ export class RouteConditions {
       return this.router.url.startsWith(`/${parent}`);
     }
   }
+  authRoute(parent: string, child: string): boolean {
+    if (child) {
+      return this.router.url === `/${parent}/${child}` 
+    } else {
+      return this.router.url === `/${parent}`;
+    }
+  }
 
 }

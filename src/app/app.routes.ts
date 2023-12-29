@@ -4,7 +4,7 @@ import { NotFoundComponent } from './componenets/not-found/not-found.component';
 
 export const routes: Routes = [
   {
-    path: 'login',
+    path: 'auth',
     loadChildren:  () => import('./routes/login').then(mod => mod.routes),
     canActivate: [AuthGuard]
   },

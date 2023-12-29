@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { HomeDetailsComponent } from '../home-details/home-details.component';
+import { HomeDetailsComponent } from '@standComponenets';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from '../login/login.component';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { RouteConditions } from '../../services/home/route-conditions.service';
+import { RouteConditions } from '@Services';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,HomeDetailsComponent,LoginComponent,RouterOutlet,RouterLink],
+  imports: [CommonModule,HomeDetailsComponent,RouterOutlet,RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

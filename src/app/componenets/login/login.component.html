@@ -1,98 +1,25 @@
-  <div [ngClass]="login.welcome?'noBg':''" class="grid grid-cols-2 bg-[url('assets/images/loginBg.webp')] bg-cover bg-center">
-  <div class="flex justify-center items-center h-screen">
-    <div
-      class="h-[500px] w-[400px] border border-white border-opacity-50 bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl shadow-md animate-rotate-y animate-once animate-duration-[2000ms] animate-ease-in-out">
-      <div class="flex justify-center mt-12 mb-20">
-        <h1 class="font-bold text-2xl text-white drop-shadow-lg">
-          Login
-        </h1>
-      </div>
-      <div class="flex flex-col gap-14">
-        <div class="flex justify-center">
-          <div class="form-items">
-            <svg [ngClass]="login.isFocused==='email'?'email ':login.isFocused==='password'?'password':'submit'" viewBox="0 0 320 300" class="absolute transition-colors top-56">
-              <defs>
-                <linearGradient id="linearGradient" x1="13" y1="193.49992" x2="307" y2="193.49992"
-                  gradientUnits="userSpaceOnUse">
-                  <stop offset="0" id="stop876" style="stop-color: #ffffff" />
-                  <stop offset="1" id="stop878" style="stop-color: #530074" />
-                </linearGradient>
-              </defs>
-              <path id="emailPath"
-                d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143"
-                class="path" />
-            </svg>
-            <div class="absolute -top-[0.6rem] left-12 w-full">
-              <div class="flex text-sm justify-center">
-                <span class="text-red-500 font-medium drop-shadow">
-                </span>
-              </div>
-            </div>
-            @if (login.incEmail) {
-              <span class="absolute text-red-500 drop-shadow-md -mt-3 ml-28 text-sm">Incorrect email!</span>
-            }
-          
-            <input (focus)="login.onEmailFocus()"  type="email" required autocomplete="off"
-              class="select-none text-white bg-transparent outline-none font-normal text-sm rounded-lg focus:outline-none focus:ring-0 border-none focus:border-none block w-[310px] px-2.5 py-1 dark-text-white ng-untouched ng-pristine ng-valid"
-              [(ngModel)]='login.email' (input)="login.correctEmail();login.incHandler('email')" /><label class="font-medium text-white"><span
-                class="drop-shadow-lg">Email</span></label>
-                <button
-                [ngClass]="!login.isEmailValid()?'text-red-600':''" 
-              class="animate-rotate-y animate-duration-[3000ms] animate-ease-in-out absolute top-[4.3px] right-1 text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-              </svg></button>
-            <div [ngClass]="login.isFocused==='email'?'brr':''"  class="w-80% h-[2px] mt-[4px] bg-white "></div>
-          </div>
-        </div>
-        <div class="flex justify-center">
-          <div class="form-items">
-            <div class="absolute -top-[0.6rem] left-9 w-full">
-              <div class="flex text-sm justify-center">
-                <span class="text-red-500 font-medium drop-shadow">
-                </span>
-              </div>
-            </div>
-            @if (login.incpassword) {
-              <span class="absolute text-red-500 drop-shadow-md -mt-3 ml-28 text-sm">Incorrect mot de pass!</span>
-            }
-            <input  (focus)="login.onPasswordFocus()"required autocomplete="off"
-              class="select-none text-white bg-transparent outline-none font-normal text-sm rounded-lg focus:outline-none focus:ring-0 border-none focus:border-none block w-[310px] px-2.5 py-1 dark-text-white ng-untouched ng-pristine ng-valid"
-              [type]="login.showPassword?'text':'password'" (input)="login.correctPassword();;login.incHandler('password')" [(ngModel)]='login.password' /><label class="font-medium text-white">
-                <span class="drop-shadow-lg">Mot de passe</span></label>
-                <button [ngClass]="!login.checkString()?'text-red-600':''" (click)="login.showPasswordHnadler()"
-              class="absolute top-[3px] right-1 text-white animate-rotate-y animate-duration-[3000ms] animate-ease-in-out">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-              </svg>
-            </button>
-            <div  [ngClass]="login.isFocused==='password'?'brr':''" class="w-80% h-[2px] mt-[4px] bg-white"></div>
-          </div>
-        </div>
-      </div>
-      <div class="flex justify-center mt-3">
-        <div class="w-[310px] flex justify-end">
-          <button class="font-semibold text-white drop-shadow">
-            Mot de passe oublié?
-          </button>
-        </div>
-      </div>
-      <div id="submit" class="flex justify-center">
-        <button  (click)="login.submitHandlter()" (focus)="login.onSubmitFocus()" type="submit" value="Submit"
-          class="mt-[2.2rem] drop-shadow-lg text-blue-950 hover:text-black hover:bg-opacity-50 font-bold focus:bg-opacity-0 focus:text-white rounded-3xl w-[224px] bg-white transition-colors text-gray py-[0.8rem]">
-          <span>Login</span>
-        </button>
-      </div>
-    </div>
-  </div>
+  <div [ngClass]="{
+    'noBg':login.welcome,
+    'flex-row-reverse':cr.authRoute('auth','signup'),
+    'justify-center':cr.authRoute('auth',''),
+   }" 
+   class="flex h-screen  bg-[url('assets/images/loginBg.webp')] bg-cover bg-center">
+ 
+   @if(cr.authRoute('auth','signup')||cr.authRoute('auth','signin') ){
+   <div class="w-[50%] flex justify-center items-center h-screen">
+     <router-outlet/>
+   </div> 
+   }
+
   <div
-    class="bg-white mt-6 m-0 p-0 drop-shadow bgShadow rounded-tl-[5rem] animate-fade animate-duration-[1500ms] animate-ease-in-out">
+  [ngClass]="{
+   'rounded-tl-[5rem] mt-6':cr.authRoute('auth','signin'),
+   'rounded-tr-[5rem] mt-6':cr.authRoute('auth','signup'),
+   'rounded-[5rem] m-8':cr.authRoute('auth',''),
+  }"
+    class="bg-white w-[50%]  m-0 p-0 drop-shadow bgShadow  animate-fade animate-duration-[1500ms] animate-ease-in-out">
     <div class="flex justify-start pl-10 items-center h-[10%] w-full">
-      <div class="12 flex justify-center items-center gap-1">
+      <div class="flex justify-center w-[15%] items-center gap-1">
         <div>
           <img src="assets/images/logo.webp" alt="Medicol logo"
             class="w-8 h-8 animate-jump-in animate-duration-[2000ms] animate-ease-in-out" />
@@ -101,8 +28,17 @@
           <span class="text-xl"><span class="font-extrabold">Medi</span>col</span>
         </div>
       </div>
+      <div class=" w-[80%] flex justify-end gap-3">     
+             @if(!cr.authRoute('auth','signup')){
+              <button [routerLink]="['signup']" class="capitalize text-gray-700 hover:text-gray-900 rounded-lg">s'inscrire</button>
+             }
+             @if(!cr.authRoute('auth','signin')){
+              <button  [routerLink]="['signin']" class="capitalize hover:text-gray-100 shadow-inner px-2 text-white hover:bg-purple-700  bg-purple-900  rounded-lg">se connecter</button>
+             }
+      </div>
+
     </div>
-    <div class="flex h-[70%] flex-col justify-center items-center gap-5 w-full">
+          <div class="flex h-[70%] flex-col justify-center items-center gap-5 w-full">
       <h3 class="font-medium capitalize drop-shadow text-black">
         Société Medicol Grossiste Pharmaceutique
       </h3>
@@ -127,6 +63,9 @@
         <img src="assets/images/phone.webp" alt="Medicol logo" class="w-5 h-5" /><span>+212539960096</span>
       </div>
     </div>
+    
+
+
     <div class="h-5%] w-full flex justify-center">
       <span class="text-[12px]">Ceated with multi<span class="font-bold">clas</span>.</span>
     </div>

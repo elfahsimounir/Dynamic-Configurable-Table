@@ -6,7 +6,7 @@ import { NavbarComponent } from './componenets/navbar/navbar.component';
 import { FooterComponent } from './componenets/footer/footer.component';
 import { AvoireComponent } from './componenets/avoire/avoire.component';
 import { HomeComponent } from './componenets/home/home.component';
-import { RouteConditions } from './services/home/route-conditions.service';
+import { RouteConditions } from './services/route-conditions/route-conditions.service';
 
 @Component({
   selector: 'app-root',

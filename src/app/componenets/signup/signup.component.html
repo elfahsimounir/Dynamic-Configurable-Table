@@ -1,0 +1,97 @@
+ <div
+class="h-[500px] w-[400px] border border-white border-opacity-50 bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl shadow-md ">
+<div class="flex justify-center mt-12 mb-20">
+  <h1 class="font-bold text-2xl text-white drop-shadow-lg capitalize">
+     s'inscrire
+  </h1>
+</div>
+<div class="flex flex-col gap-14">
+  <div class="flex justify-center">
+    <div class="form-items">
+      <svg [ngClass]="signup.isFocused==='email'?'email ':signup.isFocused==='password'?'password':'submit'" viewBox="0 0 320 300" class="absolute transition-colors top-56">
+        <defs>
+          <linearGradient id="linearGradient" x1="13" y1="193.49992" x2="307" y2="193.49992"
+            gradientUnits="userSpaceOnUse">
+            <stop offset="0" id="stop876" style="stop-color: #ffffff" />
+            <stop offset="1" id="stop878" style="stop-color: #530074" />
+          </linearGradient>
+        </defs>
+        <path id="emailPath"
+          d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143"
+          class="path" />
+      </svg>
+      <div class="absolute -top-[0.6rem] left-12 w-full">
+        <div class="flex text-sm justify-center">
+          <span class="text-red-500 font-medium drop-shadow">
+          </span>
+        </div>
+      </div>
+
+      <input (focus)="signup.onEmailFocus()"  type="email" required autocomplete="off"
+        class="select-none text-white bg-transparent outline-none font-normal text-sm rounded-lg focus:outline-none focus:ring-0 border-none focus:border-none block w-[310px] px-2.5 py-1 dark-text-white ng-untouched ng-pristine ng-valid"
+        [(ngModel)]='signup.email' (input)="signup.isEmailValid()" /><label class="font-medium text-white"><span
+          class="drop-shadow-lg">Email</span></label>
+          <button
+          [ngClass]="!signup.isEmailValid()?'text-red-600':'text-white'" 
+        class="animate-rotate-y animate-duration-[3000ms] animate-ease-in-out absolute top-[4.3px] right-1">
+        @if(!signup.isEmailValid()){
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+          </svg>
+        }@else {
+          <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+          </svg>
+        }  
+      </button>
+      <div [ngClass]="signup.isFocused==='email'?'brr':''"  class="w-80% h-[2px] mt-[4px] bg-white "></div>
+    </div>
+  </div>
+  <div class="flex justify-center">
+    <div class="form-items">
+      <div class="absolute -top-[0.6rem] left-9 w-full">
+        <div class="flex text-sm justify-center">
+          <span class="text-red-500 font-medium drop-shadow">
+          </span>
+        </div>
+      </div>
+      <input  (focus)="signup.onPasswordFocus()"required autocomplete="off"
+        class="select-none text-white bg-transparent outline-none font-normal text-sm rounded-lg focus:outline-none focus:ring-0 border-none focus:border-none block w-[310px] px-2.5 py-1 dark-text-white ng-untouched ng-pristine ng-valid"
+        [type]="signup.showPassword?'text':'password'" (input)="signup.checkString()" [(ngModel)]='signup.password' /><label class="font-medium text-white">
+          <span class="drop-shadow-lg">Mot de passe</span></label>
+          <button [ngClass]="!signup.checkString()?'text-red-600':'text-white'" (click)="signup.showPasswordHnadler()"
+        class="absolute top-[3px] right-1  animate-rotate-y animate-duration-[3000ms] animate-ease-in-out">
+        @if(!signup.checkString()){
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+          </svg>
+        }@else {
+          @if(signup.showPassword){
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+            </svg>
+          }@else{
+           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+          </svg>
+          }       
+        }
+      </button>
+      <div  [ngClass]="signup.isFocused==='password'?'brr':''" class="w-80% h-[2px] mt-[4px] bg-white"></div>
+    </div>
+  </div>
+</div>
+<div class="flex justify-center mt-3">
+  <div class="w-[310px] flex justify-end">
+    <button class="font-semibold text-white drop-shadow">
+      Mot de passe oublié?
+    </button>
+  </div>
+</div>
+<div id="submit" class="flex justify-center">
+  <button   (focus)="signup.onSubmitFocus()" type="submit" value="Submit"
+    class="mt-[2.2rem] drop-shadow-lg text-blue-950 hover:text-black hover:bg-opacity-50 font-bold focus:bg-opacity-0 focus:text-white rounded-3xl w-[224px] bg-white transition-colors text-gray py-[0.8rem]">
+    <span>signup</span>
+  </button>
+</div>
+</div>

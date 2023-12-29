@@ -16,7 +16,7 @@ logoutHandler(){
 logout() {
   if (this.cookieService.check('approved')) {
     this.cookieService.delete('approved');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth']);
   } else {
     console.error('Cookie "approved" does not exist.');
   }

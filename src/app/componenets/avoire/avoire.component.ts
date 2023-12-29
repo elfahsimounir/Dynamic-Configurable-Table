@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { TableComponent } from '../table/componenets/main-componenet/table.component';
-import { AvoirePointComponent } from './avoire-point/avoire-point.component';
+import { TableComponent } from '@TableComponenets';
+import { AvoirePointComponent } from '@standComponenets';
 
 @Component({
   selector: 'app-avoire',

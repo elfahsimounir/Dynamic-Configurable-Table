@@ -34,14 +34,14 @@ export class AuthGuard implements CanActivate {
   ): boolean | UrlTree {
     const isAuthenticated = this.cookieService.get('approved');
     this.isAuthenticated = isAuthenticated;
-    if (!isAuthenticated && state.url === '/login') {
+    if (!isAuthenticated && (state.url === '/auth'||state.url === '/auth/signup'||state.url ==='/auth/signin')) {
       return true;
     }
-    if (isAuthenticated && state.url === '/login') {
+    if (isAuthenticated && state.url === '/auth') {
       return this.router.createUrlTree(['/home']);
     }
 
-    if (state.url === '/login') {
+    if (state.url === '/auth') {
       if (this.lastNavigationTrigger?.navigationTrigger === 'imperative') {
         return false;
       } else {
@@ -54,6 +54,6 @@ export class AuthGuard implements CanActivate {
       return true;
     }
 
-    return this.router.createUrlTree(['/login']);
+    return this.router.createUrlTree(['/auth']);
   }
 }

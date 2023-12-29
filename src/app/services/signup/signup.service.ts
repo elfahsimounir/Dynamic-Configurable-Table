@@ -3,21 +3,19 @@ import anime from 'animejs'
 import { Router } from '@angular/router'
 import { CookieService } from 'ngx-cookie-service'
 
+
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class LoginService {
+export class SignupService {
   isFocused = 'email'
   email: string = 'elfahssimounir7@gmail.com'
   password: string = '1111Aa@#'
 
-  incEmail: boolean = false
-  incpassword: boolean = false
+
   
   showPassword: boolean = false
-  welcome: boolean = false
-  submited: boolean = false
-  contetShow: boolean = false
+
   private currentAnimation: any = null
 
   constructor(private cookieService: CookieService, private router: Router) { }
@@ -74,37 +72,8 @@ export class LoginService {
       return true
     }
   }
-  submitHandlter() {
-    if (this.email !== 'elfahssimounir7@gmail.com') {
-      this.incEmail = true
-    }
-    if (this.password !== '1111Aa@#') {
-      this.incpassword = true
-    }
-    if (
-      this.email === 'elfahssimounir7@gmail.com' &&
-      this.password === '1111Aa@#'
-    ) {
-      this.welcome = true
-      this.contetShow = true
-      this.cookieService.set('approved', 'true', 7)
-      setTimeout(() => {
-        this.router.navigate(['/home/details'])
-        this.welcome=false
-      }, 3000)
-    }
-    this.submited = true
-    setTimeout(() => {
-      this.submited = false
-    }, 3000)
-  }
 
-  incHandler(option: string): void {
-    if (option === 'email') {
-      this.incEmail = false
-    } else if (option === 'password') {
-      this.incpassword = false
-    }
-  }
 
 }
+
+

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { HomeListItemComponent } from '../home-list-item/home-list-item.component';
+import { HomeListItemComponent } from '@standComponenets';
 
 @Component({
   selector: 'app-home-list',

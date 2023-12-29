@@ -1,1 +1,1 @@
-// export * from './toggling/navbar.directive';
+export * from './toggling/toggling.directive';

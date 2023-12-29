@@ -1,11 +1,9 @@
 import { Component, OnInit} from '@angular/core';
-import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
+import { DarkModeToggleComponent,SignOutComponent } from '@standComponenets';
 import {RouterLink} from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TogglingDirective } from '../../directives/toggling.directive';
-import { SignOutComponent } from '../sign-out/sign-out.component';
-import { LogoutService } from '../../services/logout/logout.service';
-import { RouteConditions } from '../../services/home/route-conditions.service';
+import { TogglingDirective } from '@directives';
+import { LogoutService, RouteConditions } from '@Services';
 
 @Component({
   standalone:true,
