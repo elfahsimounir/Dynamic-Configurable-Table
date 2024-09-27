@@ -41,7 +41,7 @@ export class KeyboardService {
           this.focusRootElement();
           break;
           case 'Enter':
-           this.getTableService().saveObject()
+          //  this.getTableService().saveObject()
            this.focusRootElement();
           break;
       }

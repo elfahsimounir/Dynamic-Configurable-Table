@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, ElementRef} from '@angular/core';
+import { Component, OnInit, Input, ElementRef, Output, EventEmitter} from '@angular/core';
 import {FilterService,KeyboardService, TableService} from '@TableServices';
 import { ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 
 
 @Component({
@@ -15,16 +16,19 @@ import { FormsModule } from '@angular/forms';
 export class ToolBarComponent implements OnInit {
   @Input() tableElement!: ElementRef;
   @Input() sum: number = 0;
+  @Input() isquery=false;
   @Input() key: string = '';
+  @Output() refrechData: EventEmitter<void> = new EventEmitter<void>();
+  @Output() save: EventEmitter<void> = new EventEmitter<void>();
+  @Output() add: EventEmitter<void> = new EventEmitter<void>();
   //service links
   element: any;
-  tableService: any;
+  tableService!: TableService;
   index = 1;
   // col controle
   colControle: boolean = true;
   keyboardService!: KeyboardService;
   filterService!: FilterService;
-
   lnn=this.table.mainDataControle.length
   constructor(
     private cdr: ChangeDetectorRef,
@@ -77,4 +81,16 @@ export class ToolBarComponent implements OnInit {
   ngAfterViewInit() {
     this.cdr.detectChanges();
   }
+  refrech(){
+    this.refrechData.emit()
+  }
+  addP(){
+    this.add.emit()
+  }
+  saveData(){
+    this.save.emit()
+  }
+rest(){
+  this.filterService.restFilter()
+}
 }

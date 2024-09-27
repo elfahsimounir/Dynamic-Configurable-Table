@@ -13,10 +13,8 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   login!: LoginService;
-  signUp:boolean=true;
   constructor(private loginServices:LoginService,public cr:RouteConditions) {}
   ngOnInit(): void { 
     this.login=this.loginServices
   }
-
 }

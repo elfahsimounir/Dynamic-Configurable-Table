@@ -12,24 +12,29 @@ import { HomeListItemComponent } from '@standComponenets';
 export class HomeListComponent {
 actionsMenu=[
   {
-    title:'avoire',
-    icon:'../../../assets/images/avoire.webp',
-    route:'/avoire'
+    title:'Orders',
+    icon:'../../../assets/images/achat.png',
+    route:'/orders'
   },
   {
-    title:'expédition',
-    icon:'../../../assets/images/delivered.webp',
-    route:'/expedition'
+    title:'Products',
+    icon:'../../../assets/images/files.png',
+    route:'/products'
   },
   {
-    title:'statistique',
-    icon:'../../../assets/images/statistics.webp',
-    route:'/statistique'
+    title:'Categories',
+    icon:'../../../assets/images/options.png',
+    route:'/categories'
   },
   {
-    title:'soutien',
-    icon:'../../../assets/images/support.webp',
-    route:'/soutien'
+    title:'Les marques',
+    icon:'../../../assets/images/brand.png',
+    route:'/brands'
+  },
+  {
+    title:'Publicity',
+    icon:'../../../assets/images/pubs.png',
+    route:'/pubs'
   },
 
 ]; 

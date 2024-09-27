@@ -1,6 +1,6 @@
 <div class="w-full h-full flex flex-col gap-6 items-center pt-20  relative">
     <div class=""><p class="capitalize text-2xl font-medium text-gray-700 dark:text-gray-300">action menu</p></div>
-    <div class="w-2/3 h-2/3 bg-gray-100 dark:bg-gray-800 shdw-inner rounded-lg p-4 flex flex-wrap justify-center items-center list">
+    <div class="w-2/3 h-2/3 bg-gray-100 dark:bg-gray-800 shdw-inner rounded-lg p-4 grid grid-cols-3 list">
         @for (item of actionsMenu; track $index) {
             <app-home-list-item [icon]="item.icon" [title]="item.title" [route]="item.route" />
         }

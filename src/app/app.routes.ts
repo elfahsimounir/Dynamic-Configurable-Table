@@ -1,16 +1,35 @@
 import { Routes } from '@angular/router';
-import { AuthGuard } from './services/auth-guard/auth-guard.service';
-import { NotFoundComponent } from './componenets/not-found/not-found.component';
+import { AuthGuard } from '@Services';
+import { NotFoundComponent } from '@standComponenets';
 
 export const routes: Routes = [
   {
     path: 'auth',
     loadChildren:  () => import('./routes/login').then(mod => mod.routes),
+  },
+  {
+    path: 'brands',
+    loadChildren:  () => import('./routes/brands').then(mod => mod.routes),
     canActivate: [AuthGuard]
   },
   {
-    path: 'avoire',
+    path: 'orders',
     loadChildren:  () => import('./routes/avoire').then(mod => mod.routes),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'pubs',
+    loadChildren:  () => import('./routes/pubs').then(mod => mod.routes),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'products',
+    loadChildren:  () => import('./routes/products').then(mod => mod.routes),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'categories',
+    loadChildren:  () => import('./routes/categories').then(mod => mod.routes),
     canActivate: [AuthGuard]
   },
   {
@@ -18,6 +37,6 @@ export const routes: Routes = [
     loadChildren:  () => import('./routes/home').then(mod => mod.routes),
     canActivate: [AuthGuard]
   },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/auth/signin', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];

@@ -1,10 +1,5 @@
 <section class="h-[88vh]">
-  <div class="flex h-full gap-3">
-   <div class="w-[22%]">
-    <app-avoire-point/>
-   </div>
-   <div class="w-[78%] ">
-     <app-table [data]="data.references" [mainData]="mainData" [mainDataControle]="mainDataControle"/>
-   </div>
+  <div class="w-full h-full gap-3">
+     <app-table (save)="saveObject()" (refrechData)="getData()"  [data]="data" [port]="port" [route]="route" [mainData]="headers" [mainDataControle]="headersControle"/>
   </div>
 </section>

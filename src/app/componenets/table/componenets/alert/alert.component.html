@@ -1,7 +1,17 @@
-<ng-container *ngIf="message!==''" >
-<div *ngFor=" let i of message"  class="absolute right-0 top-20 bg-gray-700 px-5 py-3 bg-opacity-20 ackdrop-blur-md backdrop-filter  rounded-l-xl shadow">
-    <span class= "rounded-full text-green-600 font-semibold drop-shadow capitalize">{{i}}</span>
-    <div class="anom h-[2px] drop-shadow mt-2 bg-gray-400" [ngClass]="''"></div>
-
+@if (show) {
+<div
+  [ngClass]="alert?.type !== 'e' ? 'bg-green-100  top-1' : 'bg-red-100 top-10'"
+  class="absolute z-[999] animate-fade-up duration-150 ease-in-out right-1 px-4 py-1 rounded-md"
+>
+  <span
+    [ngClass]="alert.type !== 'e' ? 'text-green-600 ' : 'text-red-600'"
+    class="rounded-full text-sm drop-shadow capitalize"
+    >{{ alert?.message }}</span
+  >
+  <div
+    [ngClass]="alert.type !== 'e' ? 'bg-green-600 ' : 'bg-red-600'"
+    class="anom h-[1px]"
+  ></div>
 </div>
-</ng-container>
+  }
+

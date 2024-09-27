@@ -1,14 +1,14 @@
 
-<nav #blurNav class="w-full z-50 fixed top-0 left-0"  >
-    <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
+<nav #blurNav class="w-full z-50 fixed top-0 left-0 dark:bg-gray-800 bg-gray-100"  >
+    <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl py-2 px-4">
         <a href="http://localhost:4200/" class="flex items-center gap-2">
             <div class="12 flex justify-center items-center gap-1">
                 <div>
-                  <img src="assets/images/logo.webp"  alt="Medicol logo"
-                    class="w-8 h-8 dark:brightness-125" />
+                  <img src="assets/images/logo.png"  alt="Medicol logo"
+                    class="w-10 h-10 dark:brightness-125" />
                 </div>
                 <div>
-                  <span class="text-xl dark:text-gray-300 dark:hover:text-gray-200"><span class="font-extrabold">Medi</span>col</span>
+                  <span class="text-xl dark:text-gray-300 dark:hover:text-gray-200"><span class="font-extrabold">3R</span> Centre</span>
                 </div>
               </div>
         </a>
@@ -18,17 +18,17 @@
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
             </svg>
         </button>
-        <div  class="items-center justify-between  font-medium w-full md:flex md:w-auto md:order-1">
+        <div  class="items-center grayscale justify-between  font-medium w-full md:flex md:w-auto md:order-1">
             <ul class="flex ul flex-col p-4 md:p-0 mt-4 border  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
                 <li>
                     <a [routerLink]="['/home/details']" class=" flex gap-1 capitalize" aria-current="page">
-                        <img [ngClass]="rc.currentRoute('home','') ?'block':'hidden'" src="assets/images/home.webp" class="w-5 h-5 drop-shadow  animate-fade-left animate-duration-500 animate-ease-in-out" alt="medicol home icon" >
+                        <img [ngClass]="rc.currentRoute('home','') ?'block':'hidden'" src="assets/images/home.webp" class="w-5 h-5 drop-shadow dark:invert dark:brightness-200 animate-fade-left animate-duration-500 animate-ease-in-out" alt="medicol home icon" >
                         <span class="text-gray-700 dark:text-gray-300">Accueil</span>
                     </a>
-                    <div class="w-full h-[3px] -mt-[1px] flex items-center justify-center"><div class="w-full hidden h-full bg-gradient-to-r from-purple-600 to-purple-950 rounded-[5px]"></div></div>
+                    <div class="w-full h-[3px] -mt-[1px] flex items-center justify-center"><div class="w-full hidden h-full bg-primary rounded-[5px]"></div></div>
                 </li>
-                <li>
-            <button appToggling [border]="borderDiv" [blurDiv]="blurNav" [options]="options" [optionsIcon]="icon" [optionsIconDown]="iconDown" [optionsIconUp]="iconUp" class="flex dark:text-purple-600 text-purple-800 items-center justify-between w-full py-2 pl-3 pr-4 md:w-auto md:p-0">
+                <!-- <li>
+            <button appToggling [border]="borderDiv" [blurDiv]="blurNav" [options]="options" [optionsIcon]="icon" [optionsIconDown]="iconDown" [optionsIconUp]="iconUp" class="flex dark:text-prifrom-primary text-purple-800 items-center justify-between w-full py-2 pl-3 pr-4 md:w-auto md:p-0">
                 <img #icon src="assets/images/options.webp" class="w-5 h-5 drop-shadow hidden mr-1 animate-fade-left animate-duration-500 animate-ease-in-out" alt="medicol options icon" >   
                       <span class="text-gray-700 dark:text-gray-300">Options</span>  
                       <span #iconDown class="animate-flip-down animate-duration-500 animate-ease-in-out">
@@ -42,22 +42,21 @@
                              </svg>
                       </span>
             </button>
-                </li>
-                <li>
-                  
-                    <a [routerLink]="['/avoire']" class=" flex gap-1 capitalize" aria-current="page">
-                        <img [ngClass]="rc.currentRoute('avoire','') ?'block':'hidden'" src="assets/images/achat.webp" class="w-5 h-5 drop-shadow  animate-fade-left animate-duration-500 animate-ease-in-out" alt="medicol achats icon" >
-                        <span class="text-gray-700 dark:text-gray-300">achats</span>
+                </li> -->
+              
+              @for (item of   actionsMenu; track $index) {
+                <li>      
+                    <a [routerLink]="[item.route]" class=" flex gap-1 capitalize" aria-current="page">
+                        <img [ngClass]="rc.currentRoute(item.route.slice(1),'') ?'block':'hidden'" [src]='item.icon' class="w-5 h-5 dark:invert dark:brightness-200 animate-fade-left animate-duration-500 animate-ease-in-out" alt="medicol achats icon" >
+                        <span class="text-gray-700 dark:text-gray-300">{{item.title}}</span>
                     </a>
-                    <div class="w-full h-[3px] -mt-[1px] flex items-center justify-center"><div class="w-full hidden h-full bg-gradient-to-r from-purple-600 to-purple-950 rounded-[5px]"></div></div>
+                    <div class="w-full h-[3px] -mt-[1px] flex items-center justify-center"><div class="w-full hidden h-full bg-primary rounded-[5px]"></div></div>
                 </li>
-                <li>
-                    <a [routerLink]="['/home']" class=" flex gap-1 capitalize" aria-current="page">
-                        <img [ngClass]="rc.currentRoute('stock','') ?'block':'hidden'" src="assets/images/files.webp" class="w-5 h-5 drop-shadow  animate-fade-left animate-duration-500 animate-ease-in-out" alt="medicol stock icon" >
-                        <span class="text-gray-700 dark:text-gray-300">stock</span>
-                    </a>
-                    <div class="w-full h-[3px] -mt-[1px] flex items-center justify-center"><div class="w-full hidden h-full bg-gradient-to-r from-purple-600 to-purple-950 rounded-[5px]"></div></div>
-                </li>
+          
+              }
+          
+
+
                 <li>
                     <div >
                         <app-dark-mode-toggle/>
@@ -67,7 +66,7 @@
                     <a appToggling [setting]="setting" class="brightness-0 cursor-pointer invert-0 hover:brightness-100 dark:hover:brightness-125 hover:opacity-100 opacity-60 dark:hover:invert-0 dark:invert">
                         <img src="assets/images/parametre.webp" class="w-5 h-5 drop-shadow" alt="medicol parametre icon">
                     </a>
-                    <div #setting class="z-10 absolute hidden bg-gray-300 divide-y bg-opacity-20 backdrop-blur-sm  rounded-lg shadow dark:bg-gray-800 dark:bg-opacity-20  origin-top-right right-0 top-8">
+                    <div #setting class="z-10 absolute hidden bg-gray-300 divide-y  backdrop-blur-sm  rounded-lg shadow dark:bg-gray-800 dark:bg-opacity-20  origin-top-right right-0 top-8">
                         <ul class="py-2 px-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                             <li>
                                 <a href="#" class="block px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
@@ -96,7 +95,8 @@
 
     </div>
     <div #borderDiv  class="block" [ngClass]="rc.currentRoute('home','')? rc.currentRoute('home','details')? 'border-y dark:border-gray-950  ml-2 w-[83.4%]':'border-y dark:border-gray-950  ml-2 w-[99.2%]':''" ></div>
-    <div [ngClass]="rc.currentRoute('home','')?'mx-2 border-gray-200':''" >
+    
+    <!-- <div [ngClass]="rc.currentRoute('home','')?'mx-2 border-gray-200':''" >
         <div #options class="hidden  border-gray-200 shadow-sm ">
             <div class="grid max-w-screen-xl px-4 py-5 mx-auto text-gray-900 dark:text-white sm:grid-cols-2 md:px-6">
                 <ul>
@@ -141,6 +141,6 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> -->
 
 </nav>

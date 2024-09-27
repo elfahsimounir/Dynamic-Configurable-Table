@@ -8,7 +8,9 @@ export * from './home-details/home-details.component';
 export * from './home-list/home-list.component';
 export * from './home-details/home-details.component';
 export * from './home-list-item/home-list-item.component';
-export * from './avoire/avoire-item/avoire-item.component'
-export * from './avoire/avoire-keyboard/avoire-keyboard.component'
-export * from './avoire/avoire-point/avoire-point.component'
-export * from './avoire/montant/montant.component'
+export * from './avoire/avoire-item/avoire-item.component';
+export * from './avoire/avoire-keyboard/avoire-keyboard.component';
+export * from './avoire/avoire-point/avoire-point.component';
+export * from './avoire/montant/montant.component';
+export * from './navbar/navbar.component';
+export * from './footer/footer.component';

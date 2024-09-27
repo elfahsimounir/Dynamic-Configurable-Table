@@ -1,6 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { FilterService } from '@TableServices';
 import { CookieService } from 'ngx-cookie-service';
+import { ProductsService } from '../data/products.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -83,15 +84,17 @@ export class TableService {
   // Filter controle
   pined: boolean = false;
   filter: boolean = false;
-  selectedData: any = [];
-  temporaryObj: any = {};
+  selectedData: any = []; 
+  a=0
+  temporaryObj: any =null;
   temporaryArray: any = [];
   changes: any = {};
-  message: string = '';
   messages: any = [];
   updateAnswer: boolean = false;
   showFilter: boolean = false;
-  constructor(private injector: Injector,private cookieService: CookieService) {
+  route!:string;
+  port!:string;
+  constructor(private injector: Injector,private cookieService: CookieService,private ProductsService :ProductsService) {
     this.getUpdatedMainData();
   }
 
@@ -138,6 +141,9 @@ export class TableService {
   isString(item: any): boolean {
     return typeof item === 'string';
   }
+  isBoolean(item: any): boolean {
+    return typeof item === 'boolean';
+  }
   isNumber(item: any): boolean {
     return typeof item === 'number';
   }
@@ -158,7 +164,7 @@ export class TableService {
   }
   formatDateString(inputDateString: any) {
     const date = new Date(inputDateString);
-    const formattedDate = date.toISOString().split('T')[0];
+    const formattedDate = date?.toISOString()?.split('T')[0];
     return formattedDate;
   }
 
@@ -175,12 +181,16 @@ export class TableService {
         });
       }
     }
+    console.log(obj)
   }
-
+cancel(){
+  this.temporaryObj=null;
+  this.temporaryArray=[];
+}
   onContentChange(event: any, item: any) {
     const editedContent = event.target.innerText;
-    const inputType = event.target.getAttribute('data-input-type');
-    const index = this.temporaryArray.findIndex((it: any) => {
+    const inputType = event.target?.getAttribute('data-input-type');
+    const index = this.temporaryArray?.findIndex((it: any) => {
       return it.name === item.name;
     });
     switch (inputType) {
@@ -203,6 +213,13 @@ export class TableService {
         break;
     }
   }
+  switch(event: any, item: any) {
+    const index = this.temporaryArray?.findIndex((it: any) => {
+      return it.name === item.name;
+    });
+    this.temporaryArray[index].value = event;
+          this.temporaryArray[index].key = item.key;
+  }
   update() {
     this.temporaryArray.forEach((item: any) => {
       if (this.isString(item.key)) {
@@ -216,25 +233,51 @@ export class TableService {
     });
   }
 
-  saveObject() {
-    const index = this.data.findIndex(
-      (obj: any) => obj.id === this.temporaryObj.id
-    );
-    this.data[index] = this.temporaryObj;
-    this.update();
-
-    if (
-      this.temporaryArray.some((item: any) => {
-        return item.value !== '';
-      })
-    ) {
-      this.messages.push('Item updated secsessfully!');
-      setTimeout(() => {
-        this.messages = [];
-      }, 3000);
-    }
-    this.temporaryArray = [];
-    this.temporaryObj = {};
-    this.getFilterService().applyFilter(this.data);
+   convertArrayToObject(arr: any[]): { [key: string]: any } {
+    const result: { [key: string]: any } = {};
+  
+    arr.forEach(item => {
+      if (item.key) {
+        result[item.key] = item.value;
+      }
+    });
+  console.log(result)
+    return result;
   }
+  
+//   saveObject() {
+//     this.update()
+//     this.ProductsService.route=this.route
+//     this.ProductsService.port=this.port
+//     this.ProductsService.patchOrders(this.product?this.temporaryObj.productRef:this.temporaryObj.id, this.convertArrayToObject(this.temporaryArray)).subscribe(
+//       (response:any) => {
+//         console.log('Patch request successful:', response);
+//       },
+//       (error:any) => {
+//         console.error('Patch request failed:', error);
+//       }
+//     );
+// if(this.data){
+//     const index = this.data.findIndex(
+//       (obj: any) => obj.id === this.temporaryObj.id
+//     );
+//     this.data[index] = this.temporaryObj;
+// }
+  
+
+
+//     if (
+//       this.temporaryArray.some((item: any) => {
+//         return item.value !== '';
+//       })
+//     ) {
+//       this.messages.push('Item updated secsessfully!');
+//       setTimeout(() => {
+//         this.messages = [];
+//       }, 3000);
+//     }
+//     this.temporaryArray = [];
+//     this.temporaryObj = {};
+//     this.getFilterService().applyFilter(this.data);
+//   }
 }

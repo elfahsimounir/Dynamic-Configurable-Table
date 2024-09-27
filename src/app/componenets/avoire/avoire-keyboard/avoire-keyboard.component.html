@@ -1,5 +1,5 @@
 <div class="h-full grid grid-cols-3">
 @for (item of keys; track $index) {
-    <button class=" shadow-inner hover:shadow-sm hover:bg-gray-200 hover:text-purple-600 dark:hover:bg-gray-900 dark:border-gray-900 dark:hover:text-purple-800 dark:hover:border-gray-950 dark:border-2 0 text-gray-400 dark:text-gray-500 dark:bg-gray-950 bg-gray-100 font-semibold  m-[2px] rounded-lg">{{item}}</button>
+    <button  [ngClass]="selectItem.qte+''===item?'text-purple-600':''" (click)="qte(item)" class=" shadow-inner hover:shadow-sm hover:bg-gray-200 hover:text-purple-600 dark:hover:bg-gray-900 dark:border-gray-900 dark:hover:text-purple-800 dark:hover:border-gray-950 dark:border-2 0 text-gray-400 dark:text-gray-500 dark:bg-gray-950 bg-gray-100 font-semibold  m-[2px] rounded-lg">{{item}}</button>
 }
 </div>

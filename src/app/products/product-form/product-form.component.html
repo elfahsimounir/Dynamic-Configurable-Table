@@ -1,0 +1,224 @@
+@if(show){
+<div class="  absolute h-full w-full z-[11] flex items-center justify-center p-3">
+  <div class="shadow bg-white rounded-md px-4 py-3 ">
+    <div class="text-xl flex justify-between py-4">
+      <span>Add product</span>
+      <button (click)="close()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x">
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
+        </svg>
+      </button>
+    </div>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class=" space-y-6 ">
+
+      <!-- Title -->
+      <div class="form-group">
+        <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+        <input id="title" type="text"
+          class="block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          formControlName="title" />
+        <div
+          *ngIf="productForm.get('title')?.invalid && (productForm.get('title')?.dirty || productForm.get('title')?.touched)"
+          class="text-red-500 text-sm mt-1">
+          Title is required.
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <!-- Price -->
+        <div class="form-group w-full">
+          <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+          <input id="price" type="number"
+            class="block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            formControlName="price" />
+          <div
+            *ngIf="productForm.get('price')?.invalid && (productForm.get('price')?.dirty || productForm.get('price')?.touched)"
+            class="text-red-500 text-sm mt-1">
+            <div *ngIf="productForm.get('price')?.errors.required">Price is required.</div>
+            <div *ngIf="productForm.get('price')?.errors.pattern">Price must be a number.</div>
+          </div>
+        </div>
+
+        <!-- Discount -->
+        <div class="form-group w-full">
+          <label for="discount" class="block text-sm font-medium text-gray-700">Discount</label>
+          <input id="discount" type="number"
+            class="block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            formControlName="discount" />
+          <div
+            *ngIf="productForm.get('discount')?.invalid && (productForm.get('discount')?.dirty || productForm.get('discount')?.touched)"
+            class="text-red-500 text-sm mt-1">
+            <div *ngIf="productForm.get('discount')?.errors?.required">Discount is required.</div>
+            <div *ngIf="productForm.get('discount')?.errors.pattern">Discount must be a number.</div>
+          </div>
+        </div>
+
+        <!-- Stock -->
+        <div class="form-group w-full">
+          <label for="stock" class="block text-sm font-medium text-gray-700">Stock</label>
+          <input id="stock" type="number"
+            class="block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            formControlName="stock" />
+          <div
+            *ngIf="productForm.get('stock')?.invalid && (productForm.get('stock')?.dirty || productForm.get('stock')?.touched)"
+            class="text-red-500 text-sm mt-1">
+            <div *ngIf="productForm.get('stock')?.errors?.required">Stock is required.</div>
+            <div *ngIf="productForm.get('stock')?.errors.pattern">Stock must be a number.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Description -->
+      <div class="form-group">
+        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+        <textarea id="description"
+          class="block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          formControlName="description"></textarea>
+        <div
+          *ngIf="productForm.get('description')?.invalid && (productForm.get('description')?.dirty || productForm.get('description')?.touched)"
+          class="text-red-500 text-sm mt-1">
+          Description is required.
+        </div>
+      </div>
+
+
+      <div class="flex gap-3">
+
+
+        <!-- Brand -->
+        <div class="form-group w-full">
+          <label for="brand" class="block text-sm font-medium text-gray-700">Brand</label>
+          <select id="brand"
+            class="block w-full bg-white border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            formControlName="brand">
+            <option *ngFor="let brand of dataBrand" [value]="brand.id">{{ brand.name }}</option>
+          </select>
+          <div
+            *ngIf="productForm.get('brand')?.invalid && (productForm.get('brand')?.dirty || productForm.get('brand')?.touched)"
+            class="text-red-500 text-sm mt-1">
+            Brand is required.
+          </div>
+        </div>
+
+        <!-- Rating -->
+        <div class="form-group w-full">
+          <label for="rating" class="block text-sm font-medium text-gray-700">Rating</label>
+          <select id="rating"
+            class="block w-full bg-white border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            formControlName="rating">
+            <option *ngFor="let rate of rating" [value]="rate.id">{{ rate.name }}</option>
+          </select>
+          <div
+            *ngIf="productForm.get('rating')?.invalid && (productForm.get('rating')?.dirty || productForm.get('rating')?.touched)"
+            class="text-red-500 text-sm mt-1">
+            Rating is required.
+          </div>
+        </div>
+        <div class="form-group w-full">
+          <label for="winCode" class="block text-sm font-medium text-gray-700">winCode</label>
+          <input id="winCode" type="text"
+            class="block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            formControlName="winCode" />
+          <div
+            *ngIf="productForm.get('winCode')?.invalid && (productForm.get('winCode')?.dirty || productForm.get('stock')?.touched)"
+            class="text-red-500 text-sm mt-1">
+            <div *ngIf="productForm.get('winCode')?.errors?.required">winCode is required.</div>
+            <div *ngIf="productForm.get('winCode')?.errors.pattern">winCode must be a number.</div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Category -->
+      <div class="form-group">
+        <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+        <select id="category"
+          class="block w-full bg-white border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          formControlName="category">
+          <option *ngFor="let category of dataCategory" [value]="category.id">{{ category.name }}</option>
+        </select>
+        <div
+          *ngIf="productForm.get('category')?.invalid && (productForm.get('category')?.dirty || productForm.get('category')?.touched)"
+          class="text-red-500 text-sm mt-1">
+          Category is required.
+        </div>
+      </div>
+
+
+      <div class="flex gap-3">
+        <!-- New -->
+        <div class="form-group flex items-center">
+          <input id="new" type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+            formControlName="new" />
+          <label for="new" class="ml-2 block text-sm text-gray-900">New</label>
+        </div>
+
+        <!-- Publish -->
+        <div class="form-group flex items-center">
+          <input id="pub" type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+            formControlName="pub" />
+          <label for="pub" class="ml-2 block text-sm text-gray-900">Publish</label>
+        </div>
+
+        <!-- Promotion -->
+        <div class="form-group flex items-center">
+          <input id="promotion" type="checkbox"
+            class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" formControlName="promotion" />
+          <label for="promotion" class="ml-2 block text-sm text-gray-900">Promotion</label>
+        </div>
+
+        <!-- Sale -->
+        <div class="form-group flex items-center">
+          <input id="sale" type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+            formControlName="sale" />
+          <label for="sale" class="ml-2 block text-sm text-gray-900">Sale</label>
+        </div>
+      </div>
+      <!-- Image Upload -->
+      <div class="form-group bg-white gap-7 border rounded-md px-5 h-[80px] flex items-center">
+        <label for="image" class="block cursor-pointer text-sm font-medium text-gray-700">
+          <input id="image" type="file"
+            class=" w-full hidden border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            (change)="handleFileInput($event)" />
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-image-plus">
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" />
+            <line x1="16" x2="22" y1="5" y2="5" />
+            <line x1="19" x2="19" y1="2" y2="8" />
+            <circle cx="9" cy="9" r="2" />
+            <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+          </svg>
+        </label>
+        <div class="">
+
+          <div *ngIf="previewSource" class="w-full">
+            <img [src]="previewSource" class="h-[60px] w-auto rounded-lg border" />
+          </div>
+        </div>
+
+
+
+        <div
+          *ngIf="productForm.get('image')?.invalid && (productForm.get('image')?.dirty || productForm.get('image')?.touched)"
+          class="text-red-500 text-sm mt-1">
+          Image is required.
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div>
+        <button type="submit"
+          class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          [disabled]="loading">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-2"></span>Submit
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- <button (click)="onUpload()">upload</button> -->
+</div>
+}

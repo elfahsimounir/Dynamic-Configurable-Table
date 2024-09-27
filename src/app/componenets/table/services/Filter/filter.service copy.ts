@@ -49,8 +49,9 @@ export class FilterService {
   }
   
   sort(filtringItem: any, keys: any) {
-    this.getTableService().data = this.getTableService()
-      .data.slice()
+   if( this.getTableService().data) 
+     this.getTableService().data = this.getTableService()
+      ?.data.slice()
       .sort((item: any, item2: any) => {
         const itemValue = item[filtringItem?.key];
         const itemValue2 = item2[filtringItem?.key];

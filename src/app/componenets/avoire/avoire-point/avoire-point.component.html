@@ -1,8 +1,9 @@
 <div class="h-full p-2 flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow">
 <div class="h-[75%] p-2 shadow-md flex flex-col bg-purple-950 rounded-lg bg-opacity-70">
 <div class="h-[90%]">
-
-<app-avoire-item [itemPrice]="360" [itemQty]="2" [itemtotal]="720" [itemName]="'dollypran 2Mg'"/>
+@for (item of selectItem.finalProducts; track $index) {
+  <app-avoire-item [itemPrice]="item?.TTC" [itemQty]="item?.qte" [itemtotal]="item?.qte*item?.TTC" [itemName]="item?.name"/>
+}
 </div>
 <div class="h-[10%]">
 <app-montant/>
@@ -38,21 +39,19 @@
           </svg>          
           <span class="text-gray-500 font-medium">user</span>
         </button>
-        <button class="h-[65%] dark:hover:border-green-800 dark:hover:text-green-800 hover:text-green-600 hover:border-green-600 border-2 hover:border-opacity-70 border-opacity-50 text-gray-500  border-purple-900 rounded-lg capitalize">validier</button>
-
+        <button (click)="selectItem.submit()" class="h-[65%] dark:hover:border-green-800 dark:hover:text-green-800 hover:text-green-600 hover:border-green-600 border-2 hover:border-opacity-70 border-opacity-50 text-gray-500  border-purple-900 rounded-lg capitalize">validier</button>
       </div>
       <div class="col-span-7">
         <app-avoire-keyboard/>
       </div>
       <div class="col-span-2 flex flex-col gap-1">
         <button class="h-[50%] shadow-inner dark:bg-gray-950 bg-gray-100 text-gray-500 hover:text-purple-700  rounded-lg ml-[2.5px] w-full flex justify-center items-center capitalize">qte</button>
-        <button class="h-[50%] shadow-inner dark:bg-gray-950 bg-gray-100 text-gray-500 hover:text-purple-700  rounded-lg ml-[2.5px] w-full flex justify-center items-center">
+        <button (click)="selectItem.restQte()" class="h-[50%] shadow-inner dark:bg-gray-950 bg-gray-100 text-gray-500 hover:text-purple-700  rounded-lg ml-[2.5px] w-full flex justify-center items-center">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
             <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
           </svg>          
         </button>
       </div>
-    
     </div>
   </div>
 </div>

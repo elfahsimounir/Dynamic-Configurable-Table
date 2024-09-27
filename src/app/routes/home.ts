@@ -11,6 +11,6 @@ export const routes: Routes = [
             { path: 'details', component: HomeDetailsComponent},
             { path: 'menu', component: HomeListComponent},
             { path: '', redirectTo: 'details', pathMatch: 'full' } 
-        ]
+        ],
     }
 ]

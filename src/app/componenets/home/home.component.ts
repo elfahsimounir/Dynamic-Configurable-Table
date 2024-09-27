@@ -13,6 +13,4 @@ import { RouteConditions } from '@Services';
 })
 export class HomeComponent {
 constructor(public rc:RouteConditions){}
-
-  
 }

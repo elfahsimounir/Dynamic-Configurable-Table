@@ -9,6 +9,7 @@ export class FilterService {
   // filter handling
   filtredData: any[] = [];
   filterInput: any[] = [];
+  filterUsed!:any[];
   constructor(private injector: Injector) {}
   getData(data: any) {
     this.data = data;
@@ -27,13 +28,27 @@ export class FilterService {
       this.filterInput.push({ inputName: item.name, content: '', option: '' });
     });
   }
-  
+
+  checkFilter(){
+   this.filterUsed=this.filterInput.filter((item:any)=>{return item.content!==''})
+    }
+
+ checkItem(item:any): boolean {
+      return this.filterUsed.some((element) => element.inputName === item.name);
+  }
+  restFilter(){
+  let a=  this.filterInput.map((item:any)=>{return { inputName: item.inputName, content: '', option: '' } })
+   this.filterInput=a
+   this.checkFilter()
+   this.applyFilter(this.getTableService().data);
+  }
   sort(filtringItem: any, keys: any) {
     this.getTableService().data = this.getTableService()
       .data.slice()
       .sort((item: any, item2: any) => {
         const itemValue = item[filtringItem?.key];
         const itemValue2 = item2[filtringItem?.key];
+        this.checkFilter()
         switch (keys) {
           case 'aTOz':
             if (this.getTableService().isString(filtringItem?.key)) {
@@ -93,14 +108,13 @@ export class FilterService {
       const filterKey = filterResult?.key;
 
       if (filterKey) {
-        this.filtredData = this.filtredData.filter((item: any) => {
+        this.filtredData = this.filtredData?.filter((item: any) => {
           const itemValue = this.getNestedValue(item, filterKey);
           const content = filterResult?.content;
 
           if (filterResult && content !== '') {
             switch (filterResult?.option) {
               case 'equal':
-                console.log( this.getTableService().formatDateString(itemValue),'|',content,'|',filterResult.type)
                 return this.filterEqual(itemValue, content, filterResult);
               case 'startWith':
                 return this.filterStartsWith(itemValue, content);
@@ -132,6 +146,7 @@ export class FilterService {
     if (option === 'rest') {
       this.filterInput[index].option = '';
       this.filterInput[index].content = '';
+        this.checkFilter();
     } else if (option === 'aTOz' || option === 'zTOa') {
       this.sort(item, option);
     } else if (option !== 'only') {
@@ -157,11 +172,21 @@ export class FilterService {
     }
   }
   filterStartsWith(itemValue: any, content: any): boolean {
-    return this.isString(itemValue) && itemValue.startsWith(content);
+    // Convert both values to lowercase for comparison
+    const lowerItemValue = this.isString(itemValue) ? itemValue.toLowerCase() : '';
+    const lowerContent = this.isString(content) ? content.toLowerCase() : '';
+  
+    return lowerItemValue.startsWith(lowerContent);
   }
+  
   filterEndsWith(itemValue: any, content: any): boolean {
-    return this.isString(itemValue) && itemValue.endsWith(content);
+    // Convert both values to lowercase for comparison
+    const lowerItemValue = this.isString(itemValue) ? itemValue.toLowerCase() : '';
+    const lowerContent = this.isString(content) ? content.toLowerCase() : '';
+  
+    return lowerItemValue.endsWith(lowerContent);
   }
+  
   filterGreater(itemValue: any, content: any): boolean {
     return itemValue > Number(content);
   }

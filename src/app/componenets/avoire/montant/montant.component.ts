@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PointOfSell } from '../../../services/point-of-sell/point-of-sell.service';
 
 @Component({
   selector: 'app-montant',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './montant.component.scss'
 })
 export class MontantComponent {
-
+  constructor(public selectItem: PointOfSell) { }
 }

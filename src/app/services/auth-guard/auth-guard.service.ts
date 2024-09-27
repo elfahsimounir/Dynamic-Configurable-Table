@@ -1,59 +1,21 @@
 import { Injectable } from '@angular/core';
-import {
-  CanActivate,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  UrlTree,
-  Router,
-  NavigationStart,
-} from '@angular/router';
-
-import { CookieService } from 'ngx-cookie-service';
-import { filter, tap } from 'rxjs/operators';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { AuthService } from '../auth-service/auth.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  lastNavigationTrigger: NavigationStart | undefined | any;
-  isAuthenticated: any;
-  constructor(
-     private cookieService: CookieService,
-     private router: Router
-             ) {
-    this.router.events
-      .pipe(
-        filter((event) => event instanceof NavigationStart),
-        tap((event) => (this.lastNavigationTrigger = event))
-      )
-      .subscribe();
-  }
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean | UrlTree {
-    const isAuthenticated = this.cookieService.get('approved');
-    this.isAuthenticated = isAuthenticated;
-    if (!isAuthenticated && (state.url === '/auth')) {
-      return true;
-    }
-    if (isAuthenticated && state.url === '/auth') {
-      return this.router.createUrlTree(['/home']);
-    }
 
-    if (state.url === '/auth') {
-      if (this.lastNavigationTrigger?.navigationTrigger === 'imperative') {
-        return false;
-      } else {
-        this.router.navigate(['/home']);
-        return false;
-      }
-    }
+  constructor(private authService: AuthService, private router: Router) { }
 
-    if (isAuthenticated) {
-      return true;
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    if (this.authService.isLoggedIn()) { 
+       this.router.navigate(['/home/details']);
+      return true; 
+    } else {
+      this.router.navigate(['/auth/signin']);
+      return false;
     }
-
-    return this.router.createUrlTree(['/auth']);
   }
 }

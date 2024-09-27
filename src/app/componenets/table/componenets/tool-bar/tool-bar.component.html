@@ -1,5 +1,6 @@
-<div class="flex items-center gap-3">
-    <div [ngClass]="colControle&&!tableService.filter?'w-[26rem] grid grid-cols-6':colControle&&tableService.filter?'w-[28rem] grid grid-cols-6':'flex items-center w-auto'"  class="h-8 dark:bg-gray-800 bg-gray-200 rounded-lg">
+<div class="flex items-center justify-between">
+  <div class="flex items-center gap-3">
+      <div [ngClass]="colControle&&!tableService.filter?'w-[26rem] grid grid-cols-7':colControle&&tableService.filter?'w-[29rem] grid grid-cols-7':'flex items-center w-auto'"  class="h-8 dark:bg-gray-800 bg-gray-200 rounded-lg">
       <div  class="flex justify-center hover:bg-white dark:hover:bg-gray-900" *ngIf="colControle">
         <button (click)="col_Controle()" data-tooltip-target="tooltip-columncontrol" type="button" class="inline-flex flex-col items-center justify-center px-5  group">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-500 dark:text-white">
@@ -30,8 +31,6 @@
             <div class="tooltip-arrow" data-popper-arrow></div>
         </div>
       </div>
-   
-
       <div [ngClass]="tableService.filter?'bg-gray-400 dark:bg-white dark:hover:bg-gray-100 rounded-lg':'hover:bg-gray-50 dark:hover:bg-gray-900'" class="flex px-5 justify-center gap-2 " *ngIf="colControle">
         <button (click)="tableService.optionsSwitcher('filter')" data-tooltip-target="tooltip-filter" type="button" class="inline-flex flex-col items-center justify-center group ">
           <svg *ngIf="!tableService.filter" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  [ngClass]="  tableService.filter?'text-white  dark:text-gray-700':'dark:text-white text-gray-500' " class="w-6 h-6 ">
@@ -57,20 +56,39 @@
             </button>
           </div>
       </div>
-
+      <!-- tableService.optionsSwitcher('actions') -->
       <div  class="flex justify-center hover:bg-gray-50 dark:hover:bg-gray-900" *ngIf="colControle">
-        <button (click)="tableService.optionsSwitcher('actions')" data-tooltip-target="tooltip-actions" type="button" class="inline-flex flex-col items-center justify-center px-5 group">
+        <button (click)=" refrech()" data-tooltip-target="tooltip-actions" type="button" class="inline-flex flex-col items-center justify-center px-5 group">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-500 dark:text-white">
           <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
           </svg>
-           <span class="sr-only">actions</span>
+           <span class="sr-only">refresh</span>
        </button> 
        <div id="tooltip-actions" role="tooltip" class="tip absolute z-10 invisible inline-block px-3  text-sm font-medium text-gray-100 transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-white dark:text-gray-700">
-           Actions
+         refrech
            <div class="tooltip-arrow" data-popper-arrow></div>
        </div>
       </div>
 
+      <div  class="flex justify-center hover:bg-gray-50 dark:hover:bg-gray-900" *ngIf="colControle">
+        <button
+          class="inline-flex flex-col items-center justify-center px-5 group"
+           (click)="tableService.actions=!tableService.actions"
+            data-tooltip-target="tooltip-actions" 
+            type="button" >
+          <svg
+           xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-500 dark:text-white">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m6 4.125 2.25 2.25m0 0 2.25 2.25M12 13.875l2.25-2.25M12 13.875l-2.25 2.25M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+          </svg>
+           <span class="sr-only">Delete</span>
+       </button> 
+       <div id="tooltip-actions" role="tooltip" class="tip absolute z-10 invisible inline-block px-3  text-sm font-medium text-gray-100 transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-white dark:text-gray-700">
+        Delete
+           <div class="tooltip-arrow" data-popper-arrow></div>
+       </div>
+      </div>
+  
+      
       <div  class="flex justify-center hover:bg-gray-50 dark:hover:bg-gray-900 " *ngIf="colControle">
         <button (click)="keyboardHandler()"  data-tooltip-target="tooltip-keyboard" type="button" class="inline-flex flex-col items-center justify-center px-5 group">
           <svg [ngClass]="keyboardService.keyboard?'text-gray-800':''" xmlns="http://www.w3.org/2000/svg" width="30" height="30"  stroke-width="1" fill="currentColor" class="bi bi-keyboard text-gray-500 dark:text-white" viewBox="0 0 16 16">
@@ -85,8 +103,8 @@
        </div>
       </div>
 
-      <div  class="flex text-purple-700 dark:text-purple-800 hover:text-gray-500 justify-center rounded-lg bg-gray-300 dark:bg-gray-600 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-900" *ngIf="colControle">
-        <button data-tooltip-target="tooltip-new" type="button" class="inline-flex flex-col items-center   justify-center px-5 group">
+      <div  class="flex text-[#473ebb] dark:text-[#473ebb] hover:text-gray-500 justify-center rounded-lg bg-gray-300 dark:bg-gray-600 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-900" *ngIf="colControle">
+        <button (click)="addP()" data-tooltip-target="tooltip-new" type="button" class="inline-flex flex-col items-center   justify-center px-5 group">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>              
@@ -127,8 +145,9 @@
       </div>
     
     </div>
-    <div *ngIf="savehandler()" class="h-8  flex justify-center items-center">
-      <button  class="text-gray-700 dark:text-gray-200 hover:text-green-600" data-tooltip-target="tooltip-save" (click)="tableService.saveObject()">
+  @if( savehandler()){
+        <div class="h-8  flex justify-center items-center">
+      <button  class="text-gray-700 dark:text-gray-200 hover:text-green-600" data-tooltip-target="tooltip-save" (click)=" saveData()">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>        
@@ -138,7 +157,14 @@
          <div class="tooltip-arrow" data-popper-arrow></div>
      </div>
     </div>
+  }
   
+  </div>
+@if (tableService.temporaryObj) {
+    <button (click)="tableService.cancel()" class="mr-5 py-1 px-2 rounded-md text-gray-900 dark:text-gray-200 dark:hover:bg-white/10 border border-gray-800/10 dark:border-white/10 hover:bg-gray-950/10">
+   Cancel
+  </button>
+}
   </div>
 
 

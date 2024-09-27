@@ -1,0 +1,443 @@
+<section class="h-[88vh] relative">
+  @if (selectedProduct) {
+  <div
+    class="absolute w-full top-0 z-10 h-full bg-primary/10 flex items-center justify-center"
+  >
+    <div class="flex relative bg-white gap-4 rounded-lg p-4 pt-14">
+      <div class="flex relative h-96 w-96 flex-col gap-2 p-3 border rounded-md">
+        <span class="bg-white absolute top-0 -translate-y-4 left-0 px-5"
+          >Image</span
+        >
+        
+        @if (imagePreview || selectedProduct.image) {
+          @if ( !imagePreview) {
+            <div class="grid grid-cols-2 gap-2 rounded-lg overflow-y-auto">
+              @for (item of selectedProduct?.images; track $index) {
+                <div class="border relative flex justify-center items-center rounded-lg overflow-hidden">
+                  <img
+                  class="h-full aspect-square w-auto"
+                  [src]="
+                  imageApi + '/' + item?.imageURL
+                  "
+                />
+                <button
+                class="absolute top-3 p-1 rounded-md transition-all hover:bg-red-600/20 hover:text-red-600 right-3"
+                (click)="deleteImage(item)"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                  />
+                </svg>
+              </button>
+                </div>
+
+              }
+            </div>
+      
+          }@else {
+            <img
+            class="h-full w-auto"
+            [src]="imagePreview"
+          />
+          }
+
+
+  
+        }@else{
+        <div class="flex justify-center items-center">
+          <p class="flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-image-off"
+            >
+              <line x1="2" x2="22" y1="2" y2="22" />
+              <path d="M10.41 10.41a2 2 0 1 1-2.83-2.83" />
+              <line x1="13.5" x2="6" y1="13.5" y2="21" />
+              <line x1="18" x2="21" y1="12" y2="15" />
+              <path
+                d="M3.59 3.59A1.99 1.99 0 0 0 3 5v14a2 2 0 0 0 2 2h14c.55 0 1.052-.22 1.41-.59"
+              />
+              <path d="M21 15V5a2 2 0 0 0-2-2H9" />
+            </svg>
+            <span>No image provided</span>
+          </p>
+        </div>
+        } @if (imagePreview) {
+        <button
+          class="absolute top-3 p-1 rounded-md transition-all hover:bg-red-600/20 hover:text-red-600 right-3"
+          (click)="imagePreview = null; selectedFile = null"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+            />
+          </svg>
+        </button>
+        }
+        <div
+          class="bg-white shadow absolute bottom-2 justify-center p-1 rounded-md flex items-center gap-2"
+        >
+          <label
+            for="image"
+            class="hover:bg-primary/10 p-2 rounded-md cursor-pointer text-primary transition-all"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-image-plus"
+            >
+              <path d="M16 5h6" />
+              <path d="M19 2v6" />
+              <path
+                d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"
+              />
+              <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+              <circle cx="9" cy="9" r="2" />
+            </svg>
+            <input
+              class="hidden"
+              id="image"
+              type="file"
+              (change)="onFileSelected($event, 'image')"
+            />
+          </label>
+          @if (selectedFile) {
+          <button
+            (click)="onUpload('image')"
+            class="text-primary p-2 rounded-md hover:bg-primary/10"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-[30px] h-[30px]"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15"
+              />
+            </svg>
+          </button>
+          }
+        </div>
+      </div>
+      <div class="flex h-96 w-96 relative flex-col gap-2 p-3 border rounded-md">
+        <span class="bg-white absolute top-0 -translate-y-4 left-0 px-5"
+          >Promotion</span
+        >
+        @if (promotionPreview||selectedProduct.promotionURL) {
+        <img
+          class="h-full w-auto"
+          [src]="
+            !promotionPreview
+              ? imageApi + '/' + selectedProduct.promotionURL
+              : promotionPreview
+          "
+        />
+        }@else{
+        <div class="flex justify-center items-center">
+          <p class="flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-image-off"
+            >
+              <line x1="2" x2="22" y1="2" y2="22" />
+              <path d="M10.41 10.41a2 2 0 1 1-2.83-2.83" />
+              <line x1="13.5" x2="6" y1="13.5" y2="21" />
+              <line x1="18" x2="21" y1="12" y2="15" />
+              <path
+                d="M3.59 3.59A1.99 1.99 0 0 0 3 5v14a2 2 0 0 0 2 2h14c.55 0 1.052-.22 1.41-.59"
+              />
+              <path d="M21 15V5a2 2 0 0 0-2-2H9" />
+            </svg>
+            <span>No image provided</span>
+          </p>
+        </div>
+        } @if (promotionPreview) {
+        <button
+          class="absolute top-3 p-1 rounded-md transition-all hover:bg-red-600/20 hover:text-red-600 right-3"
+          (click)="promotionPreview = null; promotionFile = null"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+            />
+          </svg>
+        </button>
+        }
+        <div
+          class="bg-white shadow absolute bottom-2 justify-center p-1 rounded-md flex items-center gap-2"
+        >
+          <label
+            for="imagepromo"
+            class="hover:bg-primary/10 p-2 rounded-md cursor-pointer text-primary transition-all"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-image-plus"
+            >
+              <path d="M16 5h6" />
+              <path d="M19 2v6" />
+              <path
+                d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"
+              />
+              <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+              <circle cx="9" cy="9" r="2" />
+            </svg>
+            <input
+              class="hidden"
+              id="imagepromo"
+              type="file"
+              (change)="onFileSelected($event, 'promo')"
+            />
+          </label>
+          @if (promotionFile) {
+          <button
+            (click)="onUpload('promo')"
+            class="text-primary p-2 rounded-md hover:bg-primary/10"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-[30px] h-[30px]"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15"
+              />
+            </svg>
+          </button>
+          }
+        </div>
+      </div>
+      <div class="flex relative h-96 w-96 flex-col gap-2 p-3 border rounded-md">
+        <span class="bg-white absolute top-0 -translate-y-4 left-0 px-5"
+          >Publication</span
+        >
+        @if (pubPreview||selectedProduct.pubURL) {
+        <img
+          class="h-full w-auto"
+          [src]="
+            !pubPreview ? imageApi + '/' + selectedProduct.pubURL : pubPreview
+          "
+        />
+        }@else{
+        <div class="flex justify-center items-center">
+          <p class="flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-image-off"
+            >
+              <line x1="2" x2="22" y1="2" y2="22" />
+              <path d="M10.41 10.41a2 2 0 1 1-2.83-2.83" />
+              <line x1="13.5" x2="6" y1="13.5" y2="21" />
+              <line x1="18" x2="21" y1="12" y2="15" />
+              <path
+                d="M3.59 3.59A1.99 1.99 0 0 0 3 5v14a2 2 0 0 0 2 2h14c.55 0 1.052-.22 1.41-.59"
+              />
+              <path d="M21 15V5a2 2 0 0 0-2-2H9" />
+            </svg>
+            <span>No image provided</span>
+          </p>
+        </div>
+        } @if (pubPreview) {
+        <button
+          class="absolute top-3 p-1 rounded-md transition-all hover:bg-red-600/20 hover:text-red-600 right-3"
+          (click)="pubPreview = null; pubFile = null"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+            />
+          </svg>
+        </button>
+        }
+        <div
+          class="bg-white shadow absolute bottom-2 justify-center p-1 rounded-md flex items-center gap-2"
+        >
+          <label
+            for="imagepub"
+            class="hover:bg-primary/10 p-2 rounded-md cursor-pointer text-primary transition-all"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-image-plus"
+            >
+              <path d="M16 5h6" />
+              <path d="M19 2v6" />
+              <path
+                d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"
+              />
+              <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+              <circle cx="9" cy="9" r="2" />
+            </svg>
+            <input
+              class="hidden"
+              id="imagepub"
+              type="file"
+              (change)="onFileSelected($event, 'pub')"
+            />
+          </label>
+          @if (pubFile) {
+          <button
+            (click)="onUpload('pub')"
+            class="text-primary p-2 rounded-md hover:bg-primary/10"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-[30px] h-[30px]"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15"
+              />
+            </svg>
+          </button>
+          }
+        </div>
+      </div>
+
+      <button
+        (click)="selectedProduct = null"
+        class="absolute top-3 p-1 hover:bg-red-600/20 hover:text-red-600 transition-all right-3 rounded-md"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-7 h-7"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18 18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+  }
+
+  <app-product-form
+  [loading]="proLoading"
+    (submitProduct)="onProductSubmit($event)"
+    [dataBrand]="dataBrand"
+    [dataCategory]="dataCategory"
+    (closeM)="displayModel()"
+    [show]="showModal"
+  ></app-product-form>
+  <div class="w-full h-full gap-3">
+    <app-table
+      (addP)="displayModel()"
+      (image)="imageView($event)"
+      (delete)="delete($event)"
+      ngSkipHydration
+      (save)="saveObject()"
+      (refrechData)="refrech()"
+      [data]="data"
+      [isquery]="true"
+      [port]="port"
+      [route]="route"
+      [mainData]="headers"
+      [mainDataControle]="headersControle"
+    />
+  </div>
+</section>

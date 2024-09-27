@@ -1,0 +1,162 @@
+<div class="max-w-[900px] bg-white py-3 rounde-lg shadow mx-auto p-4 relative">
+    @for (item of alerts; track $index) {
+        <app-alert [alert]="item" />
+        }
+   <div class="relative">
+    <div class="flex my-4 justify-between bg-white ">
+        <input  type="text" placeholder="Search by name or state" [(ngModel)]="searchQuery"
+            class="  border rounded-md px-2 py-1 text-sm" />
+
+            <div class="flex items-center gap-2 mx-5">
+                <button (click)="showModal=!showModal"
+                    class=" hover:bg-primary/10  rounded-full border border-transparent hover:border-primary/10 p-1 ">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-plus">
+                        <path d="M5 12h14" />
+                        <path d="M12 5v14" />
+                    </svg>
+                </button>
+                <div class="flex items-center hover:bg-primary/10  rounded-full border border-transparent hover:border-primary/10 p-1">
+                    <button (click)="loadPublications()" data-tooltip-target="tooltip-actions" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-500 dark:text-white">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                        </svg>
+                         <span class="sr-only">actions</span>
+                     </button> 
+                  </div>
+               </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-5 h-[750px] overflow-y-auto">
+        <div *ngFor="let publication of filterPublications()"
+            class="card border h-[300px] max-h-[300px] border-gray-300 flex w-full cursor-pointer">
+            <div class="relative w-full h-full">
+                <div class="mb-4 relative h-full">
+                    <img class="h-full" *ngIf="publication.imageUrl||imagePreview"
+                        [src]="updatedImage&& selectedPublication?.id===publication?.id?imagePreview : imageApi+'/'+publication.imageUrl"
+                        alt="{{publication.name}}">
+                    <!-- <img *ngIf="!updatedImage && selectedPublication?.imageUrl" [src]="selectedPublication?.imageUrl" alt="{{selectedPublication.name}}" class="mb-4"> -->
+                    @if(selectedPublication?.id===publication?.id){
+                    <label
+                        class="absolute bg-white/40 hover:bg-primary/40 p-1 transition-all shadow text-primary cursor-pointer hover:text-white rounded-md top-4 left-4"
+                        for="image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-image-plus">
+                            <path d="M16 5h6" />
+                            <path d="M19 2v6" />
+                            <path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5" />
+                            <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+                            <circle cx="9" cy="9" r="2" />
+                        </svg>
+                        <input id="image" type="file" (change)="onImageChange($event)" class=" hidden">
+                    </label>
+                    @if (updatedImage) {
+                    <button
+                        class="absolute bg-white/40 hover:bg-primary/40 p-1 transition-all shadow text-primary hover:text-white rounded-md top-14 left-4"
+                        (click)="updatePublicationImage()">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24"
+                            stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15" />
+                        </svg>
+                    </button>
+                    }
+                    }
+                </div>
+                @if (selectedPublication?.id===publication?.id) {  
+                <button
+                *ngIf="isPublicationChanged()" 
+                 (click)="updatePublication()"
+                    class="p-2 hover:bg-primary/20 absolute right-4 bottom-4 z-10 hover:text-primary transition-all text-sm  rounded-md bg-gray-100">
+                    Save
+                </button>
+                }
+                <div class=" absolute top-4 right-4 flex ">
+                    <button
+                   
+                    (click)="selectPublication(publication)"
+                    class=" p-1 rounded-md text-gray-800 hover:text-primary hover:bg-white/70 hover:text-primar bg-white/30 transition-all"
+                    >
+                    @if ( selectedPublication?.id!==publication?.id) {
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                          </svg>     
+                    }@else {
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" />
+                          </svg>                          
+                    }                         
+                </button>
+                    @if (selectedPublication?.id===publication?.id) {
+                    <button (click)="deletePublications(selectedPublication.id)"
+                        class=" p-1  bg-white/30 hover:bg-red-600/10 hover:text-red-600 transition-all text-sm  rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                        </svg>
+                    </button>
+                    }
+                </div>
+
+                <div class="absolute bottom-0 bg-white shadow text-neutral-700 w-full px-2 py-1">
+                    <div>
+
+                        @if (selectedPublication?.id===publication?.id) {
+                        <input class="w-full" id="name" [(ngModel)]="updatedData.name">
+                        }@else {
+                        <label>{{publication.name}}</label>
+                        }
+                    </div>
+                    <div>
+
+                        @if (selectedPublication?.id===publication?.id) {
+                        <input class="w-full" id="url" [(ngModel)]="updatedData.url">
+                        }@else {
+                        <label>{{publication.url}}</label>
+                        }
+                    </div>
+
+                    <div>
+                        <div>
+                            @if (selectedPublication?.id===publication?.id) {
+                                Status:     <input id="state" type="checkbox" [(ngModel)]="updatedData.state" class="">
+                            }@else {
+                            <label for="state" class="">Status: {{publication.state ? 'Active' : 'Inactive'}}</label>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="showModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center">
+            <div class="bg-white rounded-lg p-8 w-1/2">
+                <h3 class="text-xl font-bold mb-4">Add Publication</h3>
+                <div class="mb-4">
+                    <input [(ngModel)]="newPublication.name" class="border border-gray-300 rounded p-2 w-full"
+                        placeholder="Title">
+                </div>
+                <div class="mb-4">
+                    <textarea [(ngModel)]="newPublication.url" class="border border-gray-300 rounded p-2 w-full"
+                        placeholder="URL"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="state" class="block">Status:</label>
+                    <input id="state" type="checkbox" [(ngModel)]="newPublication.state" class="mr-2"> Active
+                </div>
+                <div class="flex justify-end">
+                    <button (click)="toggleModal()" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">
+                        Cancel
+                    </button>
+                    <button (click)="addPublication()" class="bg-blue-500 text-white px-4 py-2 rounded">
+                        Add Publication
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+
+</div>

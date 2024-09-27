@@ -35,7 +35,7 @@
 .marching-ants {
   @include marching-ants-v2-init(20px, 1px, 1s, 1);
   &.headline {
-    @include marching-ants-v2-color(#843ebb, rgba(165, 165, 165, 0.719));
+    @include marching-ants-v2-color(#473ebb, rgba(165, 165, 165, 0.719));
     color: white;
   }
 }
@@ -58,16 +58,17 @@
   width: 0;
 }
 .checkbox.style-e input:checked ~ .checkbox__checkmark {
-  background-color: #843ebb;
+  background-color: white;
 }
 .checkbox.style-e input:checked ~ .checkbox__checkmark:after {
+  background: #473ebb;
   left: 12px;
 }
 .checkbox.style-e:hover input ~ .checkbox__checkmark {
-  background-color: rgba(0, 0, 0, 0.111);
+  background-color: rgb(237, 237, 237);
 }
 .checkbox.style-e:hover input:checked ~ .checkbox__checkmark {
-  background-color: #6d25a4
+  background-color: rgb(237, 237, 237);
 }
 .checkbox.style-e .checkbox__checkmark {
   position: absolute;
@@ -81,15 +82,16 @@
   content: "";
   position: absolute;
   left: 2px;
-  top: 3.334%;
+  top: 1px;
   width: 13px;
   height: 13px;
   display: block;
   border-radius: 50%;
   transition: left 0.25s ease;
+
 }
 .checkbox.style-e .checkbox__body {
-  color: #333;
+  color: red;
   line-height: 1.4;
   font-size: 16px;
   transition: color 0.25s ease;
@@ -136,7 +138,7 @@
   left: 5px;
   width: 6px;
   height: 10px;
-  border: solid #843ebb;
+  border: solid #473ebb;
   border-width: 0 2px 2px 0;
   transform: rotate(37deg);
 }

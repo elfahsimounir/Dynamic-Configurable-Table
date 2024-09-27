@@ -1,11 +1,8 @@
-@if(auth.isAuthenticated){
-    <div>
-        <app-navbar/>
-    </div>
-<div [ngClass]="rc.currentRoute('home','') ?'':'mt-16'" class="mx-2">
+  @if(auth){
+    <app-navbar/>
+  }
+
+  <div [ngClass]="rc.currentRoute('home','') ?'mx-2':auth? 'mt-16 mx-2':''">
     <router-outlet/>
-</div>
-    <app-footer />
-}@else {
-<router-outlet/>
-}
+  </div>
+ 

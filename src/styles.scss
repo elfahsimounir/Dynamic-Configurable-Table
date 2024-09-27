@@ -49,3 +49,33 @@
         outline: none;
     }
 }
+::-webkit-scrollbar {
+    width: 7px;
+  }
+   
+  ::-webkit-scrollbar-track {
+    background: rgb(241, 241, 241);
+  }
+   
+  ::-webkit-scrollbar-thumb {
+    background: rgb(136, 136, 136);
+     border-radius: 20px;
+  }
+
+  
+.spinner-border {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 0.1em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border .75s linear infinite;
+  }
+  
+  @keyframes spinner-border {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

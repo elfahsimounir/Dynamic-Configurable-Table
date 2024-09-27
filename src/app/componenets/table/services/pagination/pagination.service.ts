@@ -11,6 +11,7 @@ export class PaginationService {
   visibleItems = '15';
   visiblePage = 1;
   PagesOptionsArray: number[] = [];
+  filter!:FilterService
   constructor(private injector: Injector) {
     this.pagesSwitch()
   }
@@ -58,5 +59,13 @@ export class PaginationService {
       this.paginationHandling(this.getFilteService().filtredData);
     }
     this.pagesSwitch();
+  }
+
+  round():number{
+    if(this.getFilteService().filtredData){
+      return Math.ceil(this.getFilteService().filtredData.length/+this.visibleItems)
+    }else{
+      return 0
+  }
   }
 }

@@ -11,8 +11,8 @@ import { PaginationService,FilterService } from '@TableServices';
   styleUrls: ['./pagination.component.scss']
 })
 export class PaginationComponent implements OnInit {
-  paginationService:any;
-  filterService: any;
+  paginationService!:PaginationService;
+  filterService!: FilterService;
   constructor( private paginationService_: PaginationService,  private filterservice_: FilterService){}
 
   ngOnInit(): void {

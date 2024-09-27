@@ -20,4 +20,33 @@ logout!:LogoutService;
   ngOnInit(): void {
     this.logout=this.logoutService
   }
+  actionsMenu=[
+    {
+      title:'Orders',
+      icon:'../../../assets/images/achat.png',
+      route:'/orders'
+    },
+    {
+      title:'Products',
+      icon:'../../../assets/images/files.png',
+      route:'/products'
+    },
+    {
+      title:'Categories',
+      icon:'../../../assets/images/options.png',
+      route:'/categories'
+    },
+    {
+      title:'Les marques',
+      icon:'../../../assets/images/brand.png',
+      route:'/brands'
+    },
+    {
+      title:'Publicity',
+      icon:'../../../assets/images/pubs.png',
+      route:'/pubs'
+    },
+  
+  ]; 
+  
 }

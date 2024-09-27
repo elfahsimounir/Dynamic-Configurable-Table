@@ -2,29 +2,29 @@ import { Injectable } from '@angular/core'
 import anime from 'animejs'
 import { Router } from '@angular/router'
 import { CookieService } from 'ngx-cookie-service'
+import { AuthService } from '../../auth-service/auth.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
   isFocused = 'email'
-  email: string = 'elfahssimounir7@gmail.com'
-  password: string = '1111Aa@#'
+  email!: string
+  password!: string
 
   incEmail: boolean = false
   incpassword: boolean = false
-  
+
   showPassword: boolean = false
   welcome: boolean = false
   submited: boolean = false
-  contetShow: boolean = false
+  // contetShow: boolean = false
   private currentAnimation: any = null
 
-  constructor(private cookieService: CookieService, private router: Router) { }
+  constructor(private cookieService: CookieService, private router: Router,private auth:AuthService) { }
   showPasswordHnadler() {
     this.showPassword = !this.showPassword
   }
-
   startAnimation(target: string, offsetValue: number, dashArray: string): void {
     if (this.currentAnimation) this.currentAnimation.pause()
 
@@ -58,7 +58,7 @@ export class LoginService {
     const hasCapitalLetter = /[A-Z]/.test(this.password)
     const hasSpecialCharacter = /[!@#$%^&*(),.?":{}|<>]/.test(this.password)
     const hasNumericDigit = /\d/.test(this.password)
-    const isLengthGreaterThan8 = this.password.length > 8
+    const isLengthGreaterThan8 = this.password?.length > 8
     if (isLengthGreaterThan8) {
       return hasCapitalLetter && hasSpecialCharacter && hasNumericDigit
     } else {
@@ -67,7 +67,7 @@ export class LoginService {
   }
   isEmailValid(): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    const isLengthGreaterThan15 = this.email.length > 15
+    const isLengthGreaterThan15 = this.email?.length > 15
     if (isLengthGreaterThan15) {
       return emailRegex.test(this.email)
     } else {
@@ -75,28 +75,8 @@ export class LoginService {
     }
   }
   submitHandlter() {
-    if (this.email !== 'elfahssimounir7@gmail.com') {
-      this.incEmail = true
-    }
-    if (this.password !== '1111Aa@#') {
-      this.incpassword = true
-    }
-    if (
-      this.email === 'elfahssimounir7@gmail.com' &&
-      this.password === '1111Aa@#'
-    ) {
-      this.welcome = true
-      this.contetShow = true
-      this.cookieService.set('approved', 'true', 7)
-      setTimeout(() => {
-        this.router.navigate(['/home/details'])
-        this.welcome=false
-      }, 3000)
-    }
-    this.submited = true
-    setTimeout(() => {
-      this.submited = false
-    }, 3000)
+console.log(this.email,this.password)
+this.auth.login(this.email,this.password)
   }
 
   incHandler(option: string): void {
@@ -106,5 +86,4 @@ export class LoginService {
       this.incpassword = false
     }
   }
-
 }

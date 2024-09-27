@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 
 @Component({
   standalone: true,
@@ -7,47 +8,52 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dark-mode-toggle.component.scss']
 })
 export class DarkModeToggleComponent implements OnInit {
+  constructor(@Inject(PLATFORM_ID) private platformId: any) {}
   ngOnInit(): void {
-    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-  } else {
-      document.documentElement.classList.remove('dark');
-  }
-    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon')
-    const themeToggleBtn = document.getElementById('theme-toggle');
-
-    if (themeToggleDarkIcon && themeToggleLightIcon && themeToggleBtn) {
+    if (isPlatformBrowser(this.platformId)) {
       if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        themeToggleLightIcon.classList.remove('hidden');
-      } else {
-        themeToggleDarkIcon.classList.remove('hidden');
-      }
-
-      themeToggleBtn.addEventListener('click', () => {
-        themeToggleDarkIcon?.classList.toggle('hidden');
-        themeToggleLightIcon?.classList.toggle('hidden');
-
-        if (localStorage.getItem('color-theme')) {
-          if (localStorage.getItem('color-theme') === 'light') {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('color-theme', 'dark');
-          } else {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('color-theme', 'light');
-          }
-        } else {
-          if (document.documentElement.classList.contains('dark')) {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('color-theme', 'light');
-          } else {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('color-theme', 'dark');
-          }
-        }
-      });
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
     }
-  }
+      const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+      const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon')
+      const themeToggleBtn = document.getElementById('theme-toggle');
+  
+      if (themeToggleDarkIcon && themeToggleLightIcon && themeToggleBtn) {
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          themeToggleLightIcon.classList.remove('hidden');
+        } else {
+          themeToggleDarkIcon.classList.remove('hidden');
+        }
+  
+        themeToggleBtn.addEventListener('click', () => {
+          themeToggleDarkIcon?.classList.toggle('hidden');
+          themeToggleLightIcon?.classList.toggle('hidden');
+  
+          if (localStorage.getItem('color-theme')) {
+            if (localStorage.getItem('color-theme') === 'light') {
+              document.documentElement.classList.add('dark');
+              localStorage.setItem('color-theme', 'dark');
+            } else {
+              document.documentElement.classList.remove('dark');
+              localStorage.setItem('color-theme', 'light');
+            }
+          } else {
+            if (document.documentElement.classList.contains('dark')) {
+              document.documentElement.classList.remove('dark');
+              localStorage.setItem('color-theme', 'light');
+            } else {
+              document.documentElement.classList.add('dark');
+              localStorage.setItem('color-theme', 'dark');
+            }
+          }
+        });
+      }
+    }
+
+    }
+
 
 }
 
