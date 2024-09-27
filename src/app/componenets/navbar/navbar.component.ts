@@ -21,4 +21,3 @@ logout!:LogoutService;
     this.logout=this.logoutService
   }
 }
-   

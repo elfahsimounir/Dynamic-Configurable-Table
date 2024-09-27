@@ -34,7 +34,7 @@ export class AuthGuard implements CanActivate {
   ): boolean | UrlTree {
     const isAuthenticated = this.cookieService.get('approved');
     this.isAuthenticated = isAuthenticated;
-    if (!isAuthenticated && (state.url === '/auth'||state.url === '/auth/signup'||state.url ==='/auth/signin')) {
+    if (!isAuthenticated && (state.url === '/auth')) {
       return true;
     }
     if (isAuthenticated && state.url === '/auth') {

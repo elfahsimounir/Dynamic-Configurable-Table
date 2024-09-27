@@ -1,11 +1,12 @@
-
+*{
+  user-select: none !important;
+}
 .path {
     fill: none;
     stroke: url(#linearGradient);
     stroke-width: 1.5;
     stroke-dasharray: 240 1386;
   }
-  
   .form-items {
     position: relative;
   }
@@ -27,39 +28,52 @@
     top: -8px;
     opacity: 0.7;
   }
-  .content{
-    opacity: 0;
-    margin-top: -100rem;
-    animation:  contt 2s ease-in-out;
-  }
-  @keyframes contt{
-    0%{opacity: 1 ; margin-top:-1rem}
-    100%{opacity: 0; margin-top:-100rem}
-  }
 
 
-  
   .email{
-    position: absolute;
-    width: 411.4px;
-    left: calc(-3.13rem);
+    top: -149px;
+    width: 484px;
+    left: 128px;
     z-index: -1;
-    top: calc(-7.6rem);
   }
   .password{
-    position: absolute;
-    width: 411.4px;
-    left: -3.13rem;
+    width: 243.4px;
+    left: 55px;
     z-index: -1;
-    top: -7.6rem;
+    top: 76px;
+    transform: rotate(180deg);
+  }
+  .adresse{
+    top: -165px;
+    width: 484px;
+    left: 128px;
+    z-index: -1;
   }
   .submit{
-    position: absolute;
-      width: 396px;
-      left: -43px;
-      height: 18rem;
-      z-index: -1;
-      top:-0.76rem;
+    width: 396px;
+    left: 79px;
+    height: 18rem;
+    z-index: -1;
+    top: 42px;
+  }
+  .identification{
+    z-index: -1;
+    top: -54px;
+    left: -29px;
+    width: 231px;
+  }
+  .contact{
+    z-index: -1;
+    top: -13px;
+    left: -29px;
+    width: 231px;
+  }
+  .confirmer{
+    width: 244.4px;
+    left: 15.87rem;
+    z-index: -1;
+    top: 76px;
+    transform: rotate(180deg);
   }
   .wlc{
     filter: drop-shadow(-5px 1px 2px #0000004d);

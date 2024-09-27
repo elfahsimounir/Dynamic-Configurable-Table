@@ -1,31 +1,30 @@
 import { Injectable } from '@angular/core'
-import anime from 'animejs'
 import { Router } from '@angular/router'
-import { CookieService } from 'ngx-cookie-service'
-
+import anime from 'animejs'
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignupService {
-  isFocused = 'email'
-  email: string = 'elfahssimounir7@gmail.com'
-  password: string = '1111Aa@#'
+  isFocused = 'identification'
 
+  email:string = '';
+  password:string = '';
+  confirmer:string='';
+  identification:string='';
+  contact:string='';
+  adresse:string='';
+  validation:string='';
 
-  
-  showPassword: boolean = false
-
+  showPassword: boolean = false;
   private currentAnimation: any = null
 
-  constructor(private cookieService: CookieService, private router: Router) { }
+  constructor(private router:Router) {}
   showPasswordHnadler() {
     this.showPassword = !this.showPassword
   }
-
   startAnimation(target: string, offsetValue: number, dashArray: string): void {
     if (this.currentAnimation) this.currentAnimation.pause()
-
     this.currentAnimation = anime({
       targets: target,
       strokeDashoffset: {
@@ -40,12 +39,28 @@ export class SignupService {
       },
     })
   }
+  onConfirmerFocus(): void {
+    this.startAnimation('#emailPath', 0, '240 1386')
+    this.isFocused = 'confirmer'
+  }
+  onAdresseFocus(): void {
+    this.startAnimation('#emailPath', -336, '240 1386')
+    this.isFocused = 'adresse'
+  }
+  onIdentificationFocus(): void {
+    this.startAnimation('#emailPath', 0, '240 1386')
+    this.isFocused = 'identification'
+  }
+  onContactFocus(): void {
+    this.startAnimation('#emailPath', -336, '240 1386')
+    this.isFocused = 'contact'
+  }
   onEmailFocus(): void {
     this.startAnimation('#emailPath', 0, '240 1386')
     this.isFocused = 'email'
   }
   onPasswordFocus(): void {
-    this.startAnimation('#emailPath', -336, '240 1386')
+    this.startAnimation('#emailPath', 0, '240 1386')
     this.isFocused = 'password'
   }
   onSubmitFocus(): void {
@@ -56,12 +71,19 @@ export class SignupService {
     const hasCapitalLetter = /[A-Z]/.test(this.password)
     const hasSpecialCharacter = /[!@#$%^&*(),.?":{}|<>]/.test(this.password)
     const hasNumericDigit = /\d/.test(this.password)
-    const isLengthGreaterThan8 = this.password.length > 8
-    if (isLengthGreaterThan8) {
-      return hasCapitalLetter && hasSpecialCharacter && hasNumericDigit
-    } else {
-      return true
-    }
+    const isLengthGreaterThan8 = this.password.length >= 8
+      if (isLengthGreaterThan8) {
+          return hasCapitalLetter && hasSpecialCharacter && hasNumericDigit
+      } else {
+        return true
+      }
+  } 
+  checkEquality():boolean{
+   if(this.confirmer.length>=this.password.length){
+    return this.confirmer===this.password
+   }else{
+    return true
+   }
   }
   isEmailValid(): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -72,8 +94,18 @@ export class SignupService {
       return true
     }
   }
-
-
+  submitHandlte(){
+    if (!(this.isEmailValid() && this.checkEquality() && this.checkString())) {
+      this.validation = 'no';
+      setTimeout(() => {
+        this.validation=''
+    }, 500);
+    } else {
+      this.validation = 'yes';
+      setTimeout(() => {
+        this.validation='';
+        this.router.navigate(['/auth/signin'])
+      }, 2000);
+    }
+  }
 }
-
-

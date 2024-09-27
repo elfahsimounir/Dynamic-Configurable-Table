@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { AvoireItemComponent,AvoireKeyboardComponent,MontantComponent  } from '@standComponenets';
+import { AvoireItemComponent } from '../avoire-item/avoire-item.component';
+import { AvoireKeyboardComponent } from '../avoire-keyboard/avoire-keyboard.component';
+import { MontantComponent } from '../montant/montant.component';
+
 
 @Component({
   selector: 'app-avoire-point',

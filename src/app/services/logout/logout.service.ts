@@ -20,5 +20,6 @@ logout() {
   } else {
     console.error('Cookie "approved" does not exist.');
   }
+
 }
 }

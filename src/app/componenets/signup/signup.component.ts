@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import { SignupService } from '@Services';
 
 @Component({
@@ -13,7 +12,7 @@ import { SignupService } from '@Services';
 })
 export class SignupComponent implements OnInit{
   signup!: SignupService;
-  constructor(private signUpServices:SignupService,public router:Router) {}
+  constructor(private signUpServices:SignupService) {}
   ngOnInit(): void { 
     this.signup=this.signUpServices
 }
