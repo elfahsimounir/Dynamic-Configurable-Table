@@ -1,27 +1,79 @@
-# Angular17
+Dynamic & Configurable Table Component
+A powerful, modular, and fully customizable table component designed for managing dynamic data with invoice generation capabilities. Built for performance and flexibility, this table supports advanced features like data editing, Excel import/export, pagination, and dynamic filters — all while being configurable from the outside to fit a variety of use cases.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.6.
+🚀 Features
+✅ Dynamic Data Table – Easily manage and display complex datasets.
 
-## Development server
+🧩 Modular Component Structure – Built with composability in mind; configure and extend from outside.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+📝 Inline Editing – Update data directly inside the table with real-time responsiveness.
 
-## Code scaffolding
+📤 Export to Excel – Download your data or invoices in Excel format effortlessly.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+📥 Import from Excel – Quickly populate the table by uploading Excel files.
 
-## Build
+🔍 Dynamic Filtering – Powerful filter options to drill down into data.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+📄 Invoice Generation – Instantly generate and structure invoice data for download.
 
-## Running unit tests
+📊 Pagination & Sorting – Optimized for handling large datasets smoothly.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+⚙️ Configuration
+The component is fully customizable:
 
-## Running end-to-end tests
+Pass configuration objects for columns, data schemas, filtering options, and action callbacks.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Toggle features like edit mode, export/import visibility, or pagination dynamically.
 
-## Further help
+📦 Use Case
+Ideal for:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Invoice & billing dashboards
+
+Admin panels
+
+ERP-style data management
+
+CRUD-heavy applications
+
+🛠️ Tech Stack
+React (or specify framework you're using)
+
+Excel parsing via SheetJS or similar (if used)
+
+Tailored modular architecture for easy integration
+
+📸 Preview
+Add screenshots or a short demo GIF here for better engagement
+
+📁 Installation & Usage
+bash
+Copy
+Edit
+# Clone the repo
+git clone https://github.com/your-username/your-repo-name
+
+# Install dependencies
+npm install
+
+# Run the app
+npm run dev
+Import the component and configure it like this:
+
+jsx
+Copy
+Edit
+<TableComponent
+  data={data}
+  columns={columnsConfig}
+  onEdit={handleEdit}
+  enableExport
+  enableImport
+  filters={filterOptions}
+/>
+📃 License
+MIT – free to use, share, and contribute.
+
+🙌 Contributing
+Contributions are welcome! Feel free to fork the repo, open issues, or submit pull requests.
+
